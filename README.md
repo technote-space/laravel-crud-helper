@@ -12,41 +12,45 @@ CRUD helper for Laravel.
 [Packagist](https://packagist.org/packages/technote/laravel-crud-helper)
 
 ## Install
+
 ```shell script
 composer require technote/laravel-crud-helper
 ```
 
 ## Usage
 1. Implement Crudable contract and Crudable Trait.
-    ```php
-    <?php
-    use Illuminate\Database\Eloquent\Model;
-    use Technote\CrudHelper\Models\Contracts\Crudable as CrudableContract;
-    use Technote\CrudHelper\Models\Traits\Crudable;
+   ```php
+   <?php
+   namespace App\Models;
+   
+   use Eloquent;
+   use Illuminate\Database\Eloquent\Model;
+   use Technote\CrudHelper\Models\Contracts\Crudable as CrudableContract;
+   use Technote\CrudHelper\Models\Traits\Crudable;
     
-    /**
-     * Class Item
-     * @mixin Eloquent
-     */
-    class Item extends Model implements CrudableContract
-    {
-        use Crudable;
-    
-        /**
-         * @var array
-         */
-        protected $guarded = [
-            'id',
-        ];
-    }
-    ```
+   /**
+    * Class Item
+    * @mixin Eloquent
+    */
+   class Item extends Model implements CrudableContract
+   {
+       use Crudable;
+   
+       /**
+        * @var array
+        */
+       protected $guarded = [
+           'id',
+       ];
+   }
+   ```
 1. Add API router.
-    ```php
-    <?php
-    Route::apiResources([
-        'items' => '\Technote\CrudHelper\Http\Controllers\Api\CrudController',
-    ]);
-    ```
+   ```php
+   <?php
+   Route::apiResources([
+       'items' => '\Technote\CrudHelper\Http\Controllers\Api\CrudController',
+   ]);
+   ```
 
 ## Routes
 ```shell script
@@ -89,13 +93,13 @@ Model name is determined by api name.
 - App\\Models
 #### To Change
 1. Run command.
-    ```shell script
-    php artisan vendor:publish --provider="Technote\CrudHelper\Providers\CrudHelperServiceProvider" --tag=config
-    ```
+   ```shell script
+   php artisan vendor:publish --provider="Technote\CrudHelper\Providers\CrudHelperServiceProvider" --tag=config
+   ```
 1. Change setting.
-    ```php
-    'namespace' => 'App\\Models',
-    ``` 
+   ```php
+   'namespace' => 'App\\Models',
+   ``` 
    
 ## Searchable
 ### [Laravel Search Helper](https://github.com/technote-space/laravel-search-helper)
