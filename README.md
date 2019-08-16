@@ -13,7 +13,7 @@ CRUD helper for Laravel.
 
 ## Install
 
-```shell script
+```
 composer require technote/laravel-crud-helper
 ```
 
@@ -53,7 +53,7 @@ composer require technote/laravel-crud-helper
    ```
 
 ## Routes
-```shell script
+```
 > php artisan route:list
 +--------+-----------+------------------+---------------+-----------------------------------------------------------------+------------+
 | Domain | Method    | URI              | Name          | Action                                                          | Middleware |
@@ -93,7 +93,7 @@ Model name is determined by api name.
 - App\\Models
 #### To Change
 1. Run command.
-   ```shell script
+   ```
    php artisan vendor:publish --provider="Technote\CrudHelper\Providers\CrudHelperServiceProvider" --tag=config
    ```
 1. Change setting.
@@ -103,7 +103,7 @@ Model name is determined by api name.
    
 ## Searchable
 ### [Laravel Search Helper](https://github.com/technote-space/laravel-search-helper)
-```shell script
+```
 api/items?s=keyword
 ```
 
