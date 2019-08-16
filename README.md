@@ -12,6 +12,7 @@ CRUD helper for Laravel.
 [Packagist](https://packagist.org/packages/technote/laravel-crud-helper)
 
 ## Install
+
 ```shell script
 composer require technote/laravel-crud-helper
 ```
