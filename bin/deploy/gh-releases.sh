@@ -25,6 +25,7 @@ targets=()
 targets+=("src")
 targets+=("config")
 targets+=("resources")
+targets+=("routes")
 targets+=("vendor")
 for target in "${targets[@]}"; do
   cp -r ${TRAVIS_BUILD_DIR}/${target} ${PACKAGE_DIR}/ 2>/dev/null || :
