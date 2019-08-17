@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Technote\CrudHelper\Models\Contracts;
 
 use Doctrine\DBAL\Schema\Column;
+use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Interface Crudable
@@ -17,10 +18,11 @@ interface Crudable
      * @param  Column  $column
      * @param  bool  $isUpdate
      * @param  int|null  $primaryId
+     * @param  FormRequest  $request
      *
      * @return array
      */
-    public static function filterCrudRules(array $rules, string $name, Column $column, bool $isUpdate, ?int $primaryId): array;
+    public static function filterCrudRules(array $rules, string $name, Column $column, bool $isUpdate, ?int $primaryId, FormRequest $request): array;
 
     /**
      * @param  string  $attr
@@ -28,10 +30,11 @@ interface Crudable
      * @param  Column  $column
      * @param  bool  $isUpdate
      * @param  int|null  $primaryId
+     * @param  FormRequest  $request
      *
      * @return string
      */
-    public static function filterCrudAttribute(string $attr, string $name, Column $column, bool $isUpdate, ?int $primaryId): string;
+    public static function filterCrudAttribute(string $attr, string $name, Column $column, bool $isUpdate, ?int $primaryId, FormRequest $request): string;
 
     /**
      * @return array
