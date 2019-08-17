@@ -221,7 +221,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      */
     protected function filterRules(array $rules, string $name, Column $column): array
     {
-        return $this->target::filterCrudRules($rules, $name, $column, $this->isUpdate(), $this->getPrimaryId());
+        return $this->target::filterCrudRules($rules, $name, $column, $this->isUpdate(), $this->getPrimaryId(), $this);
     }
 
     /**
@@ -429,7 +429,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      */
     protected function filterAttribute(string $attr, string $name, Column $column): string
     {
-        return $this->target::filterCrudAttribute($attr, $name, $column, $this->isUpdate(), $this->getPrimaryId());
+        return $this->target::filterCrudAttribute($attr, $name, $column, $this->isUpdate(), $this->getPrimaryId(), $this);
     }
 
     /**

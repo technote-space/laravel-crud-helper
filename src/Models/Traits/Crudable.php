@@ -5,6 +5,7 @@ namespace Technote\CrudHelper\Models\Traits;
 
 use Doctrine\DBAL\Schema\Column;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Trait Crudable
@@ -19,11 +20,12 @@ trait Crudable
      * @param  Column  $column
      * @param  bool  $isUpdate
      * @param  int|null  $primaryId
+     * @param  FormRequest  $request
      *
      * @return array
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public static function filterCrudRules(/** @noinspection PhpUnusedParameterInspection */ array $rules, string $name, Column $column, bool $isUpdate, ?int $primaryId): array
+    public static function filterCrudRules(/** @noinspection PhpUnusedParameterInspection */ array $rules, string $name, Column $column, bool $isUpdate, ?int $primaryId, FormRequest $request): array
     {
         return $rules;
     }
@@ -34,11 +36,12 @@ trait Crudable
      * @param  Column  $column
      * @param  bool  $isUpdate
      * @param  int|null  $primaryId
+     * @param  FormRequest  $request
      *
      * @return string
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public static function filterCrudAttribute(/** @noinspection PhpUnusedParameterInspection */ string $attr, string $name, Column $column, bool $isUpdate, ?int $primaryId): string
+    public static function filterCrudAttribute(/** @noinspection PhpUnusedParameterInspection */ string $attr, string $name, Column $column, bool $isUpdate, ?int $primaryId, FormRequest $request): string
     {
         return $attr;
     }
