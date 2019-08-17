@@ -97,7 +97,8 @@ Model name is determined by api name.
    'namespace' => 'App\\Models\\Crud',
    ``` 
    
-## Searchable
+## Search feature
+If implement Searchable, you can add search feature.
 ### [Laravel Search Helper](https://github.com/technote-space/laravel-search-helper)
 ```
 api/items?s=keyword
