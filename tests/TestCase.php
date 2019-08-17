@@ -7,7 +7,6 @@ use Faker\Factory;
 use Faker\Generator;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Application;
-use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Technote\CrudHelper\Providers\CrudHelperServiceProvider;
@@ -29,14 +28,6 @@ class TestCase extends BaseTestCase
             'database' => ':memory:',
         ]);
         $app['config']->set('crud-helper.namespace', 'Technote\CrudHelper\Tests');
-        $app['router']->prefix('api')
-                      ->namespace('Technote\CrudHelper\Http\Controllers')
-                      ->group(function (Router $router) {
-                          $router->apiResources([
-                              'users' => 'Api\CrudController',
-                              'items' => 'Api\CrudController',
-                          ]);
-                      });
         $app['translator']->addLines(['database.items.name' => 'Name'], 'en');
     }
 

@@ -33,15 +33,39 @@ class CrudHelperServiceProvider extends ServiceProvider
      */
     private function segmentToModel()
     {
-        return $this->getNamespace().'\\'.Str::studly(Str::singular(request()->segment(2)));
+        return self::getApiNamespace().'\\'.Str::studly(Str::singular(request()->segment(self::getApiPrefixSegmentCount() + 1)));
     }
 
     /**
      * @return string
      */
-    private function getNamespace()
+    public static function getApiPrefix(): string
     {
-        return rtrim(config('crud-helper.namespace', 'App\\Models'), '\\');
+        return config('crud-helper.prefix', 'api');
+    }
+
+    /**
+     * @return string
+     */
+    public static function getApiNamespace(): string
+    {
+        return trim(config('crud-helper.namespace', 'App\\Models'), '\\');
+    }
+
+    /**
+     * @return array
+     */
+    public static function getApiMiddleware(): array
+    {
+        return config('crud-helper.middleware', ['api']);
+    }
+
+    /**
+     * @return int
+     */
+    public static function getApiPrefixSegmentCount()
+    {
+        return count(explode('/', self::getApiPrefix()));
     }
 
     /**
@@ -51,12 +75,14 @@ class CrudHelperServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/../../config/crud-helper.php' => config_path('crud-helper.php'),
+        ], 'config');
+
         Validator::resolver(function ($translator, $data, $rules, $messages, $attributes) {
             return new CustomValidator($translator, $data, $rules, $messages, $attributes);
         });
         $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'technote');
-        $this->publishes([
-            __DIR__.'/../../config/crud-helper.php' => config_path('crud-helper.php'),
-        ], 'config');
+        $this->loadRoutesFrom(__DIR__.'/../../routes/api.php');
     }
 }
