@@ -44,16 +44,11 @@ composer require technote/laravel-crud-helper
        ];
    }
    ```
-1. Add API router.
-   ```php
-   <?php
-   Route::apiResources([
-       'items' => '\Technote\CrudHelper\Http\Controllers\Api\CrudController',
-   ]);
-   ```
 
 ## Routes
+CRUD routes are set automatically.
 ```
+> php artisan route:clear
 > php artisan route:list
 +--------+-----------+------------------+---------------+-----------------------------------------------------------------+------------+
 | Domain | Method    | URI              | Name          | Action                                                          | Middleware |
@@ -90,15 +85,16 @@ Model name is determined by api name.
 1. to studly: TestItem
 
 ### Namespace
-- App\\Models
+- `App\\Models`  
+  - Library does not search recursively.
 #### To Change
 1. Run command.
    ```
    php artisan vendor:publish --provider="Technote\CrudHelper\Providers\CrudHelperServiceProvider" --tag=config
    ```
-1. Change setting.
+1. Change setting (e.g. `App\\Models\\Crud`).
    ```php
-   'namespace' => 'App\\Models',
+   'namespace' => 'App\\Models\\Crud',
    ``` 
    
 ## Searchable
