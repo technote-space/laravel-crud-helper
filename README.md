@@ -84,19 +84,29 @@ Model name is determined by api name.
 1. to singular: test_item
 1. to studly: TestItem
 
-### Namespace
-- `App\\Models`  
+### Config
+#### Namespace
+- `'App\\Models'`  
   - Library does not search recursively.
-#### To Change
-1. Run command.
+#### Prefix
+- `'api'`
+#### Middleware
+- `['api']`
+##### To Change
+1. Run command to generate `config/crud-helper.php`.
    ```
    php artisan vendor:publish --provider="Technote\CrudHelper\Providers\CrudHelperServiceProvider" --tag=config
    ```
-1. Change setting (e.g. `App\\Models\\Crud`).
+1. Edit settings.
    ```php
-   'namespace' => 'App\\Models\\Crud',
+   'namespace'  => 'App\\Models\\Crud',
+   'prefix'     => 'api/v1',
+   'middleware' => [
+       'api',
+       'auth',
+   ],
    ``` 
-   
+
 ## Search feature
 If implement Searchable, you can add search feature.
 ### [Laravel Search Helper](https://github.com/technote-space/laravel-search-helper)

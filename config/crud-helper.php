@@ -1,7 +1,9 @@
 <?php
 
 return [
-
-    'namespace' => 'App\\Models',
-
+    'namespace'  => 'App\\Models',
+    'prefix'     => 'api',
+    'middleware' => [
+        'api',
+    ],
 ];
