@@ -51,12 +51,14 @@ class CrudHelperServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/../../config/crud-helper.php' => config_path('crud-helper.php'),
+        ], 'config');
+
         Validator::resolver(function ($translator, $data, $rules, $messages, $attributes) {
             return new CustomValidator($translator, $data, $rules, $messages, $attributes);
         });
         $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'technote');
-        $this->publishes([
-            __DIR__.'/../../config/crud-helper.php' => config_path('crud-helper.php'),
-        ], 'config');
+        $this->loadRoutesFrom(__DIR__.'/../../routes/api.php');
     }
 }
