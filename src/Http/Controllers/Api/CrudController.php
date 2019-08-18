@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Model;
 use Technote\CrudHelper\Http\Requests\SearchRequest;
 use Technote\CrudHelper\Http\Requests\UpdateRequest;
 use Technote\CrudHelper\Repositories\CrudRepository;
-use Technote\SearchHelper\Models\Traits\Searchable;
 
 class CrudController
 {
@@ -19,7 +18,7 @@ class CrudController
      * @param  SearchRequest  $request
      * @param  CrudRepository  $repository
      *
-     * @return LengthAwarePaginator|Builder[]|Collection|Model[]|Searchable[]
+     * @return LengthAwarePaginator|Builder[]|Collection|Model[]
      */
     public function index(SearchRequest $request, CrudRepository $repository)
     {
