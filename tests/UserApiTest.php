@@ -242,4 +242,26 @@ class UserApiTest extends TestCase
         $response->assertStatus(200)
                  ->assertJsonCount(0, 'data');
     }
+
+    public function testSearchValidation()
+    {
+        $response = $this->json(
+            'GET',
+            route('users.index', [
+                'count'  => 'abc',
+                'offset' => 'xyz',
+                'phone'  => '-1',
+            ])
+        );
+        $response->assertStatus(422)
+                 ->assertJsonFragment([
+                     'The Count must be an integer.',
+                 ])
+                 ->assertJsonFragment([
+                     'The Offset must be an integer.',
+                 ])
+                 ->assertJsonFragment([
+                     'The given data was invalid.',
+                 ]);
+    }
 }
