@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Technote\CrudHelper\Models\Contracts\Crudable;
 use Technote\CrudHelper\Providers\Contracts\ModelInjectionable;
-use Technote\SearchHelper\Models\Contracts\Searchable;
 
 /**
  * Class SearchRequest
@@ -36,7 +35,7 @@ class SearchRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @return Model|Searchable
+     * @return Model|\Technote\SearchHelper\Models\Contracts\Searchable
      * @SuppressWarnings(PHPMD.MissingImport)
      */
     private function getInstance()
@@ -81,11 +80,21 @@ class SearchRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
+     * @param  string  $class
+     *
+     * @return bool
+     */
+    private function isSearchable($class)
+    {
+        return interface_exists('\Technote\SearchHelper\Models\Contracts\Searchable') && is_subclass_of($class, '\Technote\SearchHelper\Models\Contracts\Searchable');
+    }
+
+    /**
      * @return array
      */
     public function rules(): array
     {
-        if (is_subclass_of($this->target, Searchable::class)) {
+        if ($this->isSearchable($this->target)) {
             return array_merge($this->getDefaultRules(), $this->getInstance()->getSearchRules());
         }
 
@@ -99,7 +108,7 @@ class SearchRequest extends FormRequest implements ModelInjectionable
      */
     public function attributes()
     {
-        if (is_subclass_of($this->target, Searchable::class)) {
+        if ($this->isSearchable($this->target)) {
             return array_merge($this->getDefaultAttributes(), $this->getInstance()->getSearchAttributes());
         }
 
