@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Technote\CrudHelper\Providers\Contracts\ModelInjectionable;
-use Technote\CrudHelper\Validators\CustomValidator;
 use Validator;
 
 /**
@@ -22,7 +21,6 @@ class CrudHelperServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(CustomValidator::class);
         $this->app->afterResolving(ModelInjectionable::class, function (ModelInjectionable $request) {
             $request->setTarget($this->segmentToModel());
         });
@@ -79,10 +77,11 @@ class CrudHelperServiceProvider extends ServiceProvider
             __DIR__.'/../../config/crud-helper.php' => config_path('crud-helper.php'),
         ], 'config');
 
-        Validator::resolver(function ($translator, $data, $rules, $messages, $attributes) {
-            return new CustomValidator($translator, $data, $rules, $messages, $attributes);
-        });
         $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'technote');
         $this->loadRoutesFrom(__DIR__.'/../../routes/api.php');
+
+        Validator::extend('katakana', '\Technote\CrudHelper\Validators\CustomValidator@validateKatakana', trans('technote::validation.katakana'));
+        Validator::extend('zip_code', '\Technote\CrudHelper\Validators\CustomValidator@validateZipCode', trans('technote::validation.zip_code'));
+        Validator::extend('phone', '\Technote\CrudHelper\Validators\CustomValidator@validatePhone', trans('technote::validation.phone'));
     }
 }
