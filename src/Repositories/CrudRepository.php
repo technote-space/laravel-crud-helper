@@ -5,8 +5,6 @@ namespace Technote\CrudHelper\Repositories;
 
 use Technote\CrudHelper\Models\Contracts\Crudable;
 use Technote\CrudHelper\Providers\Contracts\ModelInjectionable;
-use Technote\SearchHelper\Models\Contracts\Searchable as SearchableContract;
-use Technote\SearchHelper\Models\Traits\Searchable;
 use Eloquent;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
@@ -36,21 +34,31 @@ class CrudRepository implements ModelInjectionable
     }
 
     /**
+     * @param  string  $class
+     *
+     * @return bool
+     */
+    private function isSearchable($class)
+    {
+        return interface_exists('\Technote\SearchHelper\Models\Contracts\Searchable') && is_subclass_of($class, '\Technote\SearchHelper\Models\Contracts\Searchable');
+    }
+
+    /**
      * @param  array  $conditions
      *
-     * @return Searchable[]|LengthAwarePaginator|Builder[]|Collection|Model[]
+     * @return LengthAwarePaginator|Builder[]|Collection|Model[]
      */
     public function all(array $conditions)
     {
-        if (is_subclass_of($this->target, SearchableContract::class)) {
-            /** @var SearchableContract $class */
+        if ($this->isSearchable($this->target)) {
+            /** @var \Technote\SearchHelper\Models\Contracts\Searchable $class */
             $class    = $this->target;
             $instance = $class::search($conditions);
         } else {
             $instance = $this->instance;
         }
 
-        if (is_subclass_of($this->target, SearchableContract::class) && isset($conditions[$this->target::getCountName()])) {
+        if ($this->isSearchable($this->target) && isset($conditions[$this->target::getCountName()])) {
             return $instance->with($this->target::getCrudListRelations())->get();
         }
 
