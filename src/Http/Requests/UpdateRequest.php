@@ -156,12 +156,18 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     protected function getRules(string $target, Column $column): array
     {
         $rules = [];
-        if ($column->getNotnull() && is_null($column->getDefault())) {
-            if ($this->isUpdate()) {
-                $rules['filled'] = 'filled';
+        if ($column->getNotnull()) {
+            if (is_null($column->getDefault())) {
+                if ($this->isUpdate()) {
+                    $rules['filled'] = 'filled';
+                } else {
+                    $rules['required'] = 'required';
+                }
             } else {
-                $rules['required'] = 'required';
+                $rules['filled'] = 'filled';
             }
+        } else {
+            $rules['nullable'] = 'nullable';
         }
 
         // unsigned is invalid for sqlite
