@@ -264,4 +264,23 @@ class UserApiTest extends TestCase
                      'The given data was invalid.',
                  ]);
     }
+
+    public function testAppends()
+    {
+        $response = $this->json('GET', route('users.index'));
+        $response->assertStatus(200);
+        $json = json_decode($response->content(), true);
+        $this->assertArrayHasKey('test1', $json['data'][0]);
+        $this->assertArrayNotHasKey('test2', $json['data'][0]);
+
+        $user     = User::first();
+        $response = $this->json('GET', route('users.show', [
+            'user' => $user->id,
+        ]));
+        $response->assertStatus(200)
+                 ->assertJsonStructure([
+                     'test1',
+                     'test2',
+                 ]);
+    }
 }

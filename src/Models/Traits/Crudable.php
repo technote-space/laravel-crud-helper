@@ -49,6 +49,14 @@ trait Crudable
     /**
      * @return array
      */
+    public static function getCrudAppends(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
     public static function getCrudListRelations(): array
     {
         return [];
