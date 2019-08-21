@@ -72,7 +72,7 @@ class CrudRepository implements ModelInjectionable
      */
     public function get($primaryId)
     {
-        return $this->instance->with($this->target::getCrudDetailRelations())->findOrFail((int) $primaryId);
+        return $this->instance->with($this->target::getCrudDetailRelations())->findOrFail((int) $primaryId)->append($this->target::getCrudAppends());
     }
 
     /**
@@ -88,7 +88,7 @@ class CrudRepository implements ModelInjectionable
             $record->$relation()->create(array_merge($data['attributes'], [$record->getForeignKey() => $record->getAttribute('id')]));
         });
 
-        return $record;
+        return $this->target::find($record->id);
     }
 
     /**
@@ -106,7 +106,7 @@ class CrudRepository implements ModelInjectionable
             $record->$relation()->save($data['target']::updateOrCreate([$record->getForeignKey() => $record->getAttribute('id')], $data['attributes']));
         });
 
-        return $record;
+        return $this->target::find($primaryId);
     }
 
     /**

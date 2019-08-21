@@ -39,6 +39,11 @@ interface Crudable
     /**
      * @return array
      */
+    public static function getCrudAppends(): array;
+
+    /**
+     * @return array
+     */
     public static function getCrudListRelations(): array;
 
     /**

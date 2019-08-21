@@ -87,7 +87,7 @@ class UserApiTest extends TestCase
                 'age'       => $faker->numberBetween(0, 100),
             ],
         ]));
-        $response->assertStatus(201)
+        $response->assertStatus(200)
                  ->assertJsonStructure([
                      'id',
                      'created_at',
@@ -262,6 +262,25 @@ class UserApiTest extends TestCase
                  ])
                  ->assertJsonFragment([
                      'The given data was invalid.',
+                 ]);
+    }
+
+    public function testAppends()
+    {
+        $response = $this->json('GET', route('users.index'));
+        $response->assertStatus(200);
+        $json = json_decode($response->content(), true);
+        $this->assertArrayHasKey('test1', $json['data'][0]);
+        $this->assertArrayNotHasKey('test2', $json['data'][0]);
+
+        $user     = User::first();
+        $response = $this->json('GET', route('users.show', [
+            'user' => $user->id,
+        ]));
+        $response->assertStatus(200)
+                 ->assertJsonStructure([
+                     'test1',
+                     'test2',
                  ]);
     }
 }

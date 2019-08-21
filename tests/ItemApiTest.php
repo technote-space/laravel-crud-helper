@@ -67,7 +67,7 @@ class ItemApiTest extends TestCase
                 'age'       => $faker->numberBetween(0, 100),
             ],
         ]));
-        $response->assertStatus(201)
+        $response->assertStatus(200)
                  ->assertJsonStructure([
                      'id',
                      'created_at',
