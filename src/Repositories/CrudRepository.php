@@ -72,7 +72,7 @@ class CrudRepository implements ModelInjectionable
      */
     public function get($primaryId)
     {
-        return $this->instance->with($this->target::getCrudDetailRelations())->findOrFail((int) $primaryId);
+        return $this->instance->with($this->target::getCrudDetailRelations())->findOrFail((int) $primaryId)->append($this->target::getCrudAppends());
     }
 
     /**

@@ -29,6 +29,13 @@ class User extends Model implements CrudableContract, SearchableContract
     ];
 
     /**
+     * @var array
+     */
+    protected $appends = [
+        'test1',
+    ];
+
+    /**
      * @param  Builder  $query
      * @param  array  $conditions
      */
@@ -71,6 +78,16 @@ class User extends Model implements CrudableContract, SearchableContract
     /**
      * @return array
      */
+    public static function getCrudAppends(): array
+    {
+        return [
+            'test2',
+        ];
+    }
+
+    /**
+     * @return array
+     */
     public static function getCrudListRelations(): array
     {
         return [
@@ -104,5 +121,21 @@ class User extends Model implements CrudableContract, SearchableContract
     public function detail(): HasOne
     {
         return $this->hasOne(UserDetail::class);
+    }
+
+    /**
+     * @return string
+     */
+    public function getTest1Attribute(): string
+    {
+        return 'test1';
+    }
+
+    /**
+     * @return string
+     */
+    public function getTest2Attribute(): string
+    {
+        return 'test2';
     }
 }
