@@ -11,8 +11,10 @@ CRUD helper for Laravel.
 
 [Packagist](https://packagist.org/packages/technote/laravel-crud-helper)
 
-## Install
+<!-- START doctoc -->
+<!-- END doctoc -->
 
+## Install
 ```
 composer require technote/laravel-crud-helper
 ```
