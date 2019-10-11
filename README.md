@@ -1,7 +1,8 @@
 # Laravel CRUD Helper
 
+[![Build Status](https://github.com/technote-space/laravel-crud-helper/workflows/Build/badge.svg)](https://github.com/technote-space/laravel-crud-helper/actions)
 [![Build Status](https://travis-ci.com/technote-space/laravel-crud-helper.svg?branch=master)](https://travis-ci.com/technote-space/laravel-crud-helper)
-[![Coverage Status](https://coveralls.io/repos/github/technote-space/laravel-crud-helper/badge.svg?branch=master)](https://coveralls.io/github/technote-space/laravel-crud-helper?branch=master)
+[![codecov](https://codecov.io/gh/technote-space/laravel-crud-helper/branch/master/graph/badge.svg)](https://codecov.io/gh/technote-space/laravel-crud-helper)
 [![CodeFactor](https://www.codefactor.io/repository/github/technote-space/laravel-crud-helper/badge)](https://www.codefactor.io/repository/github/technote-space/laravel-crud-helper)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/technote-space/laravel-crud-helper/blob/master/LICENSE)
 [![PHP: >=7.1.3](https://img.shields.io/badge/PHP-%3E%3D7.1.3-orange.svg)](http://php.net/)
