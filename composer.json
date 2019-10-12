@@ -46,7 +46,7 @@
         "phpmd/phpmd": "^2.7",
         "phpunit/phpunit": "^8.4",
         "squizlabs/php_codesniffer": "^3.5",
-        "technote/laravel-search-helper": "^0.1.0"
+        "technote/laravel-search-helper": "^0.1.1"
     },
     "scripts": {
         "setup": [
