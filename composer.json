@@ -42,11 +42,11 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
         "fzaninotto/faker": "^1.8",
         "nunomaduro/collision": "^3.0",
-        "orchestra/testbench": "^3.8",
-        "phpmd/phpmd": "^2.6",
-        "phpunit/phpunit": "^8.0",
-        "squizlabs/php_codesniffer": "^3.4",
-        "technote/laravel-search-helper": "^0.0.5"
+        "orchestra/testbench": "^4.2",
+        "phpmd/phpmd": "^2.7",
+        "phpunit/phpunit": "^8.4",
+        "squizlabs/php_codesniffer": "^3.5",
+        "technote/laravel-search-helper": "^0.1.1"
     },
     "scripts": {
         "setup": [
@@ -90,6 +90,12 @@
         "gh-releases": [
             "@gh-prepare",
             "TRAVIS_BUILD_DIR=$(cd $(dirname $0); pwd) source bin/deploy/env.sh && bash bin/deploy/gh-releases.sh"
+        ],
+        "packages": [
+            "rm -rdf vendor",
+            "rm -f composer.lock",
+            "composer require doctrine/dbal",
+            "composer require --dev codedungeon/phpunit-result-printer dealerdirect/phpcodesniffer-composer-installer fzaninotto/faker nunomaduro/collision orchestra/testbench phpmd/phpmd phpunit/phpunit squizlabs/php_codesniffer technote/laravel-search-helper"
         ]
     },
     "config": {

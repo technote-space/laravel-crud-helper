@@ -41,13 +41,13 @@ class ItemApiTest extends TestCase
 
     public function testShow()
     {
-        $user     = Item::first();
+        $item     = Item::first();
         $response = $this->json('GET', route('items.show', [
-            'user' => $user->id,
+            'item' => $item->id,
         ]));
         $response->assertStatus(200)
                  ->assertJsonFragment([
-                     'name' => $user->name,
+                     'name' => $item->name,
                  ]);
     }
 
@@ -78,10 +78,10 @@ class ItemApiTest extends TestCase
     public function testUpdate()
     {
         $this->assertFalse(Item::where('name', 'xyz')->exists());
-        $user = Item::first();
+        $item = Item::first();
 
         $response = $this->json('PATCH', route('items.update', [
-            'user' => $user->id,
+            'item' => $item->id,
         ]), [
             'items' => [
                 'name' => 'xyz',
@@ -97,17 +97,17 @@ class ItemApiTest extends TestCase
 
     public function testDestroy()
     {
-        $user = Item::first();
+        $item = Item::first();
 
         $response = $this->json('DELETE', route('items.destroy', [
-            'user' => $user->id,
+            'item' => $item->id,
         ]));
         $response->assertStatus(200)
                  ->assertJsonFragment([
                      'result' => 1,
                  ]);
 
-        $this->assertFalse(Item::where('id', $user->id)->exists());
+        $this->assertFalse(Item::where('id', $item->id)->exists());
     }
 
     public function testSearchIsInvalid()
