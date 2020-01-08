@@ -5,6 +5,7 @@ namespace Technote\CrudHelper\Http\Requests;
 
 use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Types\Type;
+use Doctrine\DBAL\Types\Types;
 use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
@@ -204,6 +205,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
         if (stristr($name, 'phone') !== false) {
             $rules['phone'] = 'phone';
         }
+        $matches = null;
         if (preg_match('#\A(\w+)_id\z#', $name, $matches)) {
             $table           = Str::snake(Str::pluralStudly($matches[1]));
             $rules['exists'] = "exists:{$table},id";
@@ -240,36 +242,36 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     {
         $normalized = null;
         if (in_array($type->getName(), [
-            Type::BOOLEAN,
+            Types::BOOLEAN,
         ], true)) {
             $normalized = 'Boolean';
         } elseif (in_array($type->getName(), [
-            Type::INTEGER,
-            Type::BIGINT,
-            Type::SMALLINT,
+            Types::INTEGER,
+            Types::BIGINT,
+            Types::SMALLINT,
         ], true)) {
             $normalized = 'Int';
         } elseif (in_array($type->getName(), [
-            Type::FLOAT,
+            Types::FLOAT,
         ], true)) {
             $normalized = 'Numeric';
         } elseif (in_array($type->getName(), [
-            Type::DATETIME,
-            Type::DATETIME_IMMUTABLE,
-            Type::DATETIMETZ,
-            Type::DATETIMETZ_IMMUTABLE,
-            Type::DATE,
-            Type::DATE_IMMUTABLE,
+            Types::DATETIME_MUTABLE,
+            Types::DATETIME_IMMUTABLE,
+            Types::DATETIMETZ_MUTABLE,
+            Types::DATETIMETZ_IMMUTABLE,
+            Types::DATE_MUTABLE,
+            Types::DATE_IMMUTABLE,
         ], true)) {
             $normalized = 'Date';
         } elseif (in_array($type->getName(), [
-            Type::TIME,
-            Type::TIME_IMMUTABLE,
+            Types::TIME_MUTABLE,
+            Types::TIME_IMMUTABLE,
         ], true)) {
             $normalized = 'Time';
         } elseif (in_array($type->getName(), [
-            Type::STRING,
-            Type::TEXT,
+            Types::STRING,
+            Types::TEXT,
         ], true)) {
             $normalized = 'String';
         }

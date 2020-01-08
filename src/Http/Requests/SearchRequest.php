@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Technote\CrudHelper\Models\Contracts\Crudable;
 use Technote\CrudHelper\Providers\Contracts\ModelInjectionable;
+use Technote\SearchHelper\Models\Contracts\Searchable;
 
 /**
  * Class SearchRequest
@@ -35,7 +36,7 @@ class SearchRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @return Model|\Technote\SearchHelper\Models\Contracts\Searchable
+     * @return Model|Searchable
      * @SuppressWarnings(PHPMD.MissingImport)
      */
     private function getInstance()
