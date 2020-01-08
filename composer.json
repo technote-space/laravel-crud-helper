@@ -1,7 +1,7 @@
 {
     "name": "technote/laravel-crud-helper",
     "type": "library",
-    "license": "GPL-2.0+",
+    "license": "MIT",
     "description": "CRUD helper for laravel",
     "homepage": "https://github.com/technote-space/laravel-crud-helper",
     "keywords": [
