@@ -37,7 +37,7 @@ class TestCase extends BaseTestCase
      * @return array
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    protected function getPackageProviders(/** @noinspection PhpUnusedParameterInspection */ $app)
+    protected function getPackageProviders($app)
     {
         return [
             CrudHelperServiceProvider::class,
