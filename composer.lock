@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7589f79ae1b835e2a42aeab74e5c194e",
+    "content-hash": "60e47e711d4068e812e664406dc62ad2",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -5530,16 +5530,16 @@
         },
         {
             "name": "technote/laravel-search-helper",
-            "version": "v0.1.1",
+            "version": "v0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/technote-space/laravel-search-helper.git",
-                "reference": "d06b2507bda5c179753759f73d7ec141c32c947d"
+                "reference": "ecf54dde827c66f7be08cbd5ad5057f2af1d8869"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/technote-space/laravel-search-helper/zipball/d06b2507bda5c179753759f73d7ec141c32c947d",
-                "reference": "d06b2507bda5c179753759f73d7ec141c32c947d",
+                "url": "https://api.github.com/repos/technote-space/laravel-search-helper/zipball/ecf54dde827c66f7be08cbd5ad5057f2af1d8869",
+                "reference": "ecf54dde827c66f7be08cbd5ad5057f2af1d8869",
                 "shasum": ""
             },
             "require": {
@@ -5549,11 +5549,11 @@
             "require-dev": {
                 "codedungeon/phpunit-result-printer": "^0.26.2",
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
-                "fzaninotto/faker": "^1.8",
+                "fzaninotto/faker": "^1.9",
                 "nunomaduro/collision": "^3.0",
-                "orchestra/testbench": "^4.2",
-                "phpmd/phpmd": "^2.7",
-                "phpunit/phpunit": "^8.4",
+                "orchestra/testbench": "^4.5",
+                "phpmd/phpmd": "^2.8",
+                "phpunit/phpunit": "^8.5",
                 "squizlabs/php_codesniffer": "^3.5"
             },
             "type": "library",
@@ -5571,7 +5571,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2.0+"
+                "MIT"
             ],
             "authors": [
                 {
@@ -5586,7 +5586,7 @@
                 "laravel",
                 "search"
             ],
-            "time": "2019-10-12T15:14:59+00:00"
+            "time": "2020-01-08T18:16:09+00:00"
         },
         {
             "name": "theseer/tokenizer",
