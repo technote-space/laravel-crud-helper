@@ -1,6 +1,6 @@
 # Laravel CRUD Helper
 
-[![Build Status](https://github.com/technote-space/laravel-crud-helper/workflows/Build/badge.svg)](https://github.com/technote-space/laravel-crud-helper/actions)
+[![CI Status](https://github.com/technote-space/laravel-crud-helper/workflows/CI/badge.svg)](https://github.com/technote-space/laravel-crud-helper/actions)
 [![Build Status](https://travis-ci.com/technote-space/laravel-crud-helper.svg?branch=master)](https://travis-ci.com/technote-space/laravel-crud-helper)
 [![codecov](https://codecov.io/gh/technote-space/laravel-crud-helper/branch/master/graph/badge.svg)](https://codecov.io/gh/technote-space/laravel-crud-helper)
 [![CodeFactor](https://www.codefactor.io/repository/github/technote-space/laravel-crud-helper/badge)](https://www.codefactor.io/repository/github/technote-space/laravel-crud-helper)

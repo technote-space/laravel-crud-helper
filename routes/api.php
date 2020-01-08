@@ -18,7 +18,7 @@ Route::group([
         $loader = $function[0];
 
         return $loader->getPrefixesPsr4();
-    })->filter(function ($dirs, $namespace) use ($targetNamespace) {
+    })->filter(function (/** @noinspection PhpUnusedParameterInspection */ $dirs, $namespace) use ($targetNamespace) {
         $namespace = trim(preg_quote($namespace), '\\');
 
         return preg_match("#\A{$namespace}#", $targetNamespace) > 0;
