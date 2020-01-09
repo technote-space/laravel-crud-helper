@@ -42,6 +42,7 @@ composer require technote/laravel-crud-helper
 
 ## 使用方法
 1. `Crudable Contract` と `Crudable Trait` を実装
+
    ```php
    <?php
    namespace App\Models;
@@ -120,10 +121,12 @@ CRUD routes は自動で設定されます。
 - `['api']`
 ##### 変更方法
 1. `config/crud-helper.php` を生成するためのコマンドを実行
+
    ```
    php artisan vendor:publish --provider="Technote\CrudHelper\Providers\CrudHelperServiceProvider" --tag=config
    ```
 1. 設定を変更
+
    ```php
    'namespace'  => 'App\\Models\\Crud',
    'prefix'     => 'api/v1',

@@ -42,6 +42,7 @@ composer require technote/laravel-crud-helper
 
 ## Usage
 1. Implement `Crudable Contract` and `Crudable Trait`.
+
    ```php
    <?php
    namespace App\Models;
@@ -120,10 +121,12 @@ The model name used is determined by api name.
 - `['api']`
 ##### To Change
 1. Run command to generate `config/crud-helper.php`.
+
    ```
    php artisan vendor:publish --provider="Technote\CrudHelper\Providers\CrudHelperServiceProvider" --tag=config
    ```
 1. Edit settings.
+
    ```php
    'namespace'  => 'App\\Models\\Crud',
    'prefix'     => 'api/v1',
