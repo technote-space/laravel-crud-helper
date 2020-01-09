@@ -17,7 +17,7 @@ class CustomValidator
      * @return bool
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function validateKatakana(/** @noinspection PhpUnusedParameterInspection */ $attribute, $value, $parameters)
+    public function validateKatakana(/** @noinspection PhpUnusedParameterInspection */ $attribute, $value, $parameters): bool
     {
         return (bool) preg_match('/^[ァ-ヾ 　〜ー−]+$/u', $value);
     }
@@ -30,7 +30,7 @@ class CustomValidator
      * @return bool
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function validateZipCode(/** @noinspection PhpUnusedParameterInspection */ $attribute, $value, $parameters)
+    public function validateZipCode(/** @noinspection PhpUnusedParameterInspection */ $attribute, $value, $parameters): bool
     {
         return (bool) preg_match('/^\d{3}-\d{4}$|^\d{3}-\d{2}$|^\d{3}$|^\d{5}$|^\d{7}$/u', $value);
     }
@@ -43,7 +43,7 @@ class CustomValidator
      * @return bool
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function validatePhone(/** @noinspection PhpUnusedParameterInspection */ $attribute, $value, $parameters)
+    public function validatePhone(/** @noinspection PhpUnusedParameterInspection */ $attribute, $value, $parameters): bool
     {
         return (bool) preg_match('/^\d{2,4}-?\d{2,4}-?\d{3,4}$/u', $value);
     }

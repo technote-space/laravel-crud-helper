@@ -26,9 +26,11 @@ class CrudRepository implements ModelInjectionable
 
     /**
      * @param  string  $target
+     *
+     * @return void
      * @SuppressWarnings(PHPMD.MissingImport)
      */
-    public function setTarget(string $target)
+    public function setTarget(string $target): void
     {
         $this->target   = $target;
         $this->instance = new $this->target;
@@ -39,7 +41,7 @@ class CrudRepository implements ModelInjectionable
      *
      * @return bool
      */
-    private function isSearchable($class)
+    private function isSearchable($class): bool
     {
         return interface_exists('\Technote\SearchHelper\Models\Contracts\Searchable') && is_subclass_of($class, '\Technote\SearchHelper\Models\Contracts\Searchable');
     }
@@ -115,7 +117,7 @@ class CrudRepository implements ModelInjectionable
      *
      * @return array
      */
-    public function delete($primaryId)
+    public function delete($primaryId): array
     {
         return ['result' => $this->target::destroy((int) $primaryId)];
     }

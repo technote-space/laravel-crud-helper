@@ -65,7 +65,7 @@ class CrudController
      *
      * @return array
      */
-    public function destroy($primaryId, CrudRepository $repository)
+    public function destroy($primaryId, CrudRepository $repository): array
     {
         return $repository->delete($primaryId);
     }

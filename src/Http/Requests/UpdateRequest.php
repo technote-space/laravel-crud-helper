@@ -31,15 +31,17 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     /**
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
     /**
      * @param  string  $target
+     *
+     * @return void
      */
-    public function setTarget(string $target)
+    public function setTarget(string $target): void
     {
         $this->target = $target;
     }
@@ -47,7 +49,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     /**
      * @return string
      */
-    protected function getSingularName()
+    protected function getSingularName(): string
     {
         return Str::singular($this->getTable($this->target));
     }
@@ -79,7 +81,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     /**
      * @return array
      */
-    protected function getTargets()
+    protected function getTargets(): array
     {
         return array_merge([$this->target], array_values($this->getSubTargets()));
     }
@@ -112,7 +114,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     /**
      * @return string
      */
-    protected function getForeignKey()
+    protected function getForeignKey(): string
     {
         return $this->getInstance($this->target)->getForeignKey();
     }
@@ -194,7 +196,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      *
      * @return array
      */
-    private function getNameRules(array $rules, string $name)
+    private function getNameRules(array $rules, string $name): array
     {
         if (stristr($name, 'email') !== false) {
             $rules['email'] = 'email';
@@ -238,7 +240,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      *
      * @return array
      */
-    protected function getTypeRules(array $rules, Type $type)
+    protected function getTypeRules(array $rules, Type $type): array
     {
         $normalized = null;
         if (in_array($type->getName(), [
@@ -295,7 +297,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      *
      * @return array
      */
-    private function getBooleanTypeRules(array $rules)
+    private function getBooleanTypeRules(array $rules): array
     {
         $rules['boolean']  = 'boolean';
         $rules['nullable'] = 'nullable';
@@ -314,7 +316,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      *
      * @return array
      */
-    private function getIntTypeRules(array $rules)
+    private function getIntTypeRules(array $rules): array
     {
         $rules['integer'] = 'integer';
 
@@ -329,7 +331,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      *
      * @return array
      */
-    private function getNumericTypeRules(array $rules)
+    private function getNumericTypeRules(array $rules): array
     {
         $rules['numeric'] = 'numeric';
 
@@ -344,7 +346,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      *
      * @return array
      */
-    private function getDateTypeRules(array $rules)
+    private function getDateTypeRules(array $rules): array
     {
         $rules['date'] = 'date';
 
@@ -359,7 +361,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      *
      * @return array
      */
-    private function getTimeTypeRules(array $rules)
+    private function getTimeTypeRules(array $rules): array
     {
         $rules['time'] = 'date_format:H:i';
 
@@ -374,7 +376,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      *
      * @return array
      */
-    private function getStringTypeRules(array $rules)
+    private function getStringTypeRules(array $rules): array
     {
         $rules['string'] = 'string';
 
@@ -384,7 +386,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     /**
      * @return array
      */
-    public function attributes()
+    public function attributes(): array
     {
         return collect($this->getTargets())->flatMap(function ($target) {
             return $this->getTableAttributes($target);
@@ -417,7 +419,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      *
      * @return string|null
      */
-    protected function translateColumn(string $name, Column $column)
+    protected function translateColumn(string $name, Column $column): ?string
     {
         $key   = "database.{$name}";
         $value = __($key);
