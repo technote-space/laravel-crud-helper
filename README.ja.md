@@ -17,19 +17,19 @@ Laravel用CRUDヘルパー
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [Install](#install)
-- [Usage](#usage)
+- [インストール](#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
+- [使用方法](#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95)
 - [Routes](#routes)
-- [Details](#details)
-  - [Validation](#validation)
-  - [Model name](#model-name)
-    - [ex. test_items](#ex-test_items)
+- [詳細](#%E8%A9%B3%E7%B4%B0)
+  - [バリデーション](#%E3%83%90%E3%83%AA%E3%83%87%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3)
+  - [モデル名](#%E3%83%A2%E3%83%87%E3%83%AB%E5%90%8D)
+    - [例：`test_items`](#%E4%BE%8Btest_items)
   - [Config](#config)
     - [Namespace](#namespace)
     - [Prefix](#prefix)
     - [Middleware](#middleware)
-      - [To Change](#to-change)
-- [Search feature](#search-feature)
+      - [変更方法](#%E5%A4%89%E6%9B%B4%E6%96%B9%E6%B3%95)
+- [検索機能](#%E6%A4%9C%E7%B4%A2%E6%A9%9F%E8%83%BD)
   - [Laravel Search Helper](#laravel-search-helper)
 - [Author](#author)
 
