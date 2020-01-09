@@ -11,6 +11,8 @@ interface ModelInjectionable
 {
     /**
      * @param  string  $target
+     *
+     * @return void
      */
-    public function setTarget(string $target);
+    public function setTarget(string $target): void;
 }

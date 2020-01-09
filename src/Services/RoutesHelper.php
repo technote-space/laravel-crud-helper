@@ -1,0 +1,72 @@
+<?php
+declare(strict_types=1);
+
+namespace Technote\CrudHelper\Services;
+
+use Composer\Autoload\ClassLoader;
+use Eloquent;
+use File;
+use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Routing\Router;
+use Str;
+use Symfony\Component\Finder\SplFileInfo;
+use Technote\CrudHelper\Models\Contracts\Crudable;
+
+/**
+ * Class Routes
+ * @package Technote\CrudHelper\Services
+ */
+class RoutesHelper
+{
+    /**
+     * @param  array  $autoloadFunctions
+     * @param  string  $targetNamespace
+     *
+     * @return Collection
+     */
+    public function getCrudableClasses(array $autoloadFunctions, string $targetNamespace): Collection
+    {
+        return collect($autoloadFunctions)->filter(function ($function) {
+            return is_array($function) && $function[0] instanceof ClassLoader;
+        })->flatMap(function ($function) {
+            /** @var ClassLoader $loader */
+            $loader = $function[0];
+
+            return $loader->getPrefixesPsr4();
+        })->filter(function (/** @noinspection PhpUnusedParameterInspection */ $dirs, $namespace) use ($targetNamespace) {
+            $namespace = trim(preg_quote($namespace), '\\');
+
+            return preg_match("#\A{$namespace}#", $targetNamespace) > 0;
+        })->flatMap(function ($dirs, $namespace) use ($targetNamespace) {
+            $namespace = trim($namespace, '\\');
+            $relative  = str_replace('\\', DIRECTORY_SEPARATOR, trim(Str::replaceFirst($namespace, '', $targetNamespace), '\\'));
+
+            return collect($dirs)->flatMap(function ($dir) use ($relative) {
+                if (! is_dir($dir.DIRECTORY_SEPARATOR.$relative)) {
+                    return [];
+                }
+
+                return File::files($dir.DIRECTORY_SEPARATOR.$relative);
+            })->map(function (SplFileInfo $info) use ($targetNamespace) {
+                return $targetNamespace.str_replace([DIRECTORY_SEPARATOR, '/'], '\\', $info->getRelativePath()).'\\'.pathinfo($info->getFilename(), PATHINFO_FILENAME);
+            });
+        });
+    }
+
+    /**
+     * @param  Collection  $classes
+     * @param  Router  $router
+     *
+     * @return void
+     */
+    public function registerCrudableClasses(Collection $classes, Router $router): void
+    {
+        $classes->filter(function ($class) {
+            return class_exists($class) && is_subclass_of($class, Crudable::class);
+        })->each(function ($class) use ($router) {
+            /** @var Crudable|Model|Eloquent $class */
+            $router->apiResource($class::newModelInstance()->getTable(), '\Technote\CrudHelper\Http\Controllers\Api\CrudController');
+        });
+    }
+}

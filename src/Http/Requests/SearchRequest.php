@@ -22,15 +22,17 @@ class SearchRequest extends FormRequest implements ModelInjectionable
     /**
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
     /**
      * @param  string  $target
+     *
+     * @return void
      */
-    public function setTarget(string $target)
+    public function setTarget(string $target): void
     {
         $this->target = $target;
     }
@@ -47,7 +49,7 @@ class SearchRequest extends FormRequest implements ModelInjectionable
     /**
      * @return string
      */
-    private function getPerPage()
+    private function getPerPage(): string
     {
         return $this->target::getPerPageName();
     }
@@ -55,7 +57,7 @@ class SearchRequest extends FormRequest implements ModelInjectionable
     /**
      * @return array
      */
-    protected function getDefaultRules()
+    protected function getDefaultRules(): array
     {
         return array_merge([
             's'      => 'nullable|string',
@@ -69,7 +71,7 @@ class SearchRequest extends FormRequest implements ModelInjectionable
     /**
      * @return array
      */
-    protected function getDefaultAttributes()
+    protected function getDefaultAttributes(): array
     {
         return array_merge([
             's'      => trans('technote::validation.attributes.s'),
@@ -85,7 +87,7 @@ class SearchRequest extends FormRequest implements ModelInjectionable
      *
      * @return bool
      */
-    private function isSearchable($class)
+    private function isSearchable($class): bool
     {
         return interface_exists('\Technote\SearchHelper\Models\Contracts\Searchable') && is_subclass_of($class, '\Technote\SearchHelper\Models\Contracts\Searchable');
     }
@@ -107,7 +109,7 @@ class SearchRequest extends FormRequest implements ModelInjectionable
     /**
      * @return array
      */
-    public function attributes()
+    public function attributes(): array
     {
         if ($this->isSearchable($this->target)) {
             return array_merge($this->getDefaultAttributes(), $this->getInstance()->getSearchAttributes());
@@ -121,7 +123,7 @@ class SearchRequest extends FormRequest implements ModelInjectionable
     /**
      * @return array
      */
-    public function getConditions()
+    public function getConditions(): array
     {
         return $this->validated();
     }

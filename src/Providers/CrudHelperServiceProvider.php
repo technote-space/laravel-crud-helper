@@ -19,7 +19,7 @@ class CrudHelperServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->afterResolving(ModelInjectionable::class, function (ModelInjectionable $request) {
             $request->setTarget($this->segmentToModel());
@@ -61,7 +61,7 @@ class CrudHelperServiceProvider extends ServiceProvider
     /**
      * @return int
      */
-    public static function getApiPrefixSegmentCount()
+    public static function getApiPrefixSegmentCount(): int
     {
         return count(explode('/', self::getApiPrefix()));
     }
@@ -71,7 +71,7 @@ class CrudHelperServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->publishes([
             __DIR__.'/../../config/crud-helper.php' => config_path('crud-helper.php'),
