@@ -23,7 +23,7 @@ CRUD helper for Laravel.
 - [Details](#details)
   - [Validation](#validation)
   - [Model name](#model-name)
-    - [ex. test_items](#ex-test_items)
+    - [ex. `test_items`](#ex-test_items)
   - [Config](#config)
     - [Namespace](#namespace)
     - [Prefix](#prefix)
