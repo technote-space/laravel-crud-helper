@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "60e47e711d4068e812e664406dc62ad2",
+    "content-hash": "16f338fd13a58a7f93f8c449d0afdd11",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -498,16 +498,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.10.0",
+            "version": "v6.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "ba2de9c702d7c90a39b70c9f7e6db8e9d4a1ea3b"
+                "reference": "fe45ad5bc89e5e1b08ab2c8687f9be01c9c84d14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/ba2de9c702d7c90a39b70c9f7e6db8e9d4a1ea3b",
-                "reference": "ba2de9c702d7c90a39b70c9f7e6db8e9d4a1ea3b",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/fe45ad5bc89e5e1b08ab2c8687f9be01c9c84d14",
+                "reference": "fe45ad5bc89e5e1b08ab2c8687f9be01c9c84d14",
                 "shasum": ""
             },
             "require": {
@@ -641,7 +641,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-01-07T14:39:33+00:00"
+            "time": "2020-01-08T21:17:42+00:00"
         },
         {
             "name": "league/commonmark",
@@ -5530,16 +5530,16 @@
         },
         {
             "name": "technote/laravel-search-helper",
-            "version": "v0.1.2",
+            "version": "v0.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/technote-space/laravel-search-helper.git",
-                "reference": "ecf54dde827c66f7be08cbd5ad5057f2af1d8869"
+                "reference": "49279c91591d07860d640e4dd407539959b0aaea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/technote-space/laravel-search-helper/zipball/ecf54dde827c66f7be08cbd5ad5057f2af1d8869",
-                "reference": "ecf54dde827c66f7be08cbd5ad5057f2af1d8869",
+                "url": "https://api.github.com/repos/technote-space/laravel-search-helper/zipball/49279c91591d07860d640e4dd407539959b0aaea",
+                "reference": "49279c91591d07860d640e4dd407539959b0aaea",
                 "shasum": ""
             },
             "require": {
@@ -5586,7 +5586,7 @@
                 "laravel",
                 "search"
             ],
-            "time": "2020-01-08T18:16:09+00:00"
+            "time": "2020-01-09T08:57:25+00:00"
         },
         {
             "name": "theseer/tokenizer",
