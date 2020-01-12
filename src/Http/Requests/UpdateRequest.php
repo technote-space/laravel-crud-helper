@@ -363,7 +363,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      */
     private function getTimeTypeRules(array $rules): array
     {
-        $rules['time'] = 'date_format:H:i';
+        $rules['time'] = 'time';
 
         return $rules;
     }

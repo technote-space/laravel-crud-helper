@@ -47,4 +47,26 @@ class CustomValidator
     {
         return (bool) preg_match('/^\d{2,4}-?\d{2,4}-?\d{3,4}$/u', $value);
     }
+
+    /**
+     * @param $attribute
+     * @param $value
+     * @param $parameters
+     *
+     * @return bool
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function validateTime(/** @noinspection PhpUnusedParameterInspection */ $attribute, $value, $parameters): bool
+    {
+        $matches = null;
+        if (! preg_match('/^([0-2]?\d):([0-5]?\d)(:([0-5]?\d))?$/u', $value, $matches)) {
+            return false;
+        }
+
+        if (intval($matches[0]) >= 24) {
+            return false;
+        }
+
+        return true;
+    }
 }
