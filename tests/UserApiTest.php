@@ -131,7 +131,9 @@ class UserApiTest extends TestCase
                 'email'      => 'ddd',
                 'float_test' => 'eee',
                 'date_test'  => 'fff',
-                'time_test'  => 'ggg',
+                'time_test1' => 'ggg',
+                'time_test2' => '24:00',
+                'time_test3' => '23:59:59',
                 'item_id'    => -1,
             ],
         ]);
@@ -161,7 +163,10 @@ class UserApiTest extends TestCase
                      'The date_test is not a valid date.',
                  ])
                  ->assertJsonFragment([
-                     'The time_test does not match the format H:i.',
+                     'The time_test1 must be a valid Time.',
+                 ])
+                 ->assertJsonFragment([
+                     'The time_test2 must be a valid Time.',
                  ])
                  ->assertJsonFragment([
                      'The selected item_id is invalid.',

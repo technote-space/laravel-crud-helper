@@ -83,5 +83,6 @@ class CrudHelperServiceProvider extends ServiceProvider
         Validator::extend('katakana', '\Technote\CrudHelper\Validators\CustomValidator@validateKatakana', trans('technote::validation.katakana'));
         Validator::extend('zip_code', '\Technote\CrudHelper\Validators\CustomValidator@validateZipCode', trans('technote::validation.zip_code'));
         Validator::extend('phone', '\Technote\CrudHelper\Validators\CustomValidator@validatePhone', trans('technote::validation.phone'));
+        Validator::extend('time', '\Technote\CrudHelper\Validators\CustomValidator@validateTime', trans('technote::validation.time'));
     }
 }
