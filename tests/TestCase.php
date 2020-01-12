@@ -66,8 +66,10 @@ class TestCase extends BaseTestCase
             $table->boolean('bool_test')->nullable(true)->comment('test11');
             $table->float('float_test')->nullable(true)->comment('test12');
             $table->date('date_test')->nullable(true)->comment('test13');
-            $table->time('time_test')->nullable(true)->comment('test14');
-            $table->unsignedBigInteger('item_id')->nullable(true)->unique()->comment('test15');
+            $table->time('time_test1')->nullable(true)->comment('test14');
+            $table->time('time_test2')->nullable(true)->comment('test15');
+            $table->time('time_test3')->nullable(true)->comment('test16');
+            $table->unsignedBigInteger('item_id')->nullable(true)->unique()->comment('test17');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('item_id')->references('id')->on('items')->onUpdate('cascade')->onDelete('set null');
