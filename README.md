@@ -13,9 +13,11 @@ CRUD helper for Laravel.
 
 [Packagist](https://packagist.org/packages/technote/laravel-crud-helper)
 
+## Table of Contents
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
+<details>
+<summary>Details</summary>
 
 - [Install](#install)
 - [Usage](#usage)
@@ -23,16 +25,12 @@ CRUD helper for Laravel.
 - [Details](#details)
   - [Validation](#validation)
   - [Model name](#model-name)
-    - [ex. `test_items`](#ex-test_items)
   - [Config](#config)
-    - [Namespace](#namespace)
-    - [Prefix](#prefix)
-    - [Middleware](#middleware)
-      - [To Change](#to-change)
 - [Search feature](#search-feature)
   - [Laravel Search Helper](#laravel-search-helper)
 - [Author](#author)
 
+</details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Install
