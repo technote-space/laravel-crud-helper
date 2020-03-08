@@ -19,6 +19,19 @@ use Technote\CrudHelper\Models\Contracts\Crudable;
  */
 class RoutesHelper
 {
+    /** @var CrudOptions */
+    protected $options;
+
+    /**
+     * RoutesHelper constructor.
+     *
+     * @param  CrudOptions  $options
+     */
+    public function __construct(CrudOptions $options)
+    {
+        $this->options = $options;
+    }
+
     /**
      * @param  array  $autoloadFunctions
      * @param  string  $targetNamespace
@@ -68,5 +81,45 @@ class RoutesHelper
             /** @var Crudable|Model|Eloquent $class */
             $router->apiResource($class::newModelInstance()->getTable(), '\Technote\CrudHelper\Http\Controllers\Api\CrudController');
         });
+    }
+
+    /**
+     * @return string|Model
+     */
+    public function segmentToModel()
+    {
+        return $this->getApiNamespace().'\\'.\Illuminate\Support\Str::studly(Str::singular(request()->segment($this->getApiPrefixSegmentCount() + 1)));
+    }
+
+    /**
+     * @return string
+     */
+    public function getApiPrefix(): string
+    {
+        return $this->options->getPrefix();
+    }
+
+    /**
+     * @return string
+     */
+    public function getApiNamespace(): string
+    {
+        return trim($this->options->getNamespace(), '\\');
+    }
+
+    /**
+     * @return array
+     */
+    public function getApiMiddleware(): array
+    {
+        return $this->options->getMiddleware();
+    }
+
+    /**
+     * @return int
+     */
+    public function getApiPrefixSegmentCount(): int
+    {
+        return count(explode('/', $this->getApiPrefix()));
     }
 }
