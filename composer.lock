@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c29da9964d57cf20f847a07aa087c409",
+    "content-hash": "cd26b9823563accba933dd351b15ed61",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -5375,29 +5375,29 @@
         },
         {
             "name": "technote/laravel-search-helper",
-            "version": "v0.1.4",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/technote-space/laravel-search-helper.git",
-                "reference": "aac28d5e6708ba57cf6c41d8b91249af49dfe2fe"
+                "reference": "84700bf73b3ae803fcf12664ba0889a45a2d2795"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/technote-space/laravel-search-helper/zipball/aac28d5e6708ba57cf6c41d8b91249af49dfe2fe",
-                "reference": "aac28d5e6708ba57cf6c41d8b91249af49dfe2fe",
+                "url": "https://api.github.com/repos/technote-space/laravel-search-helper/zipball/84700bf73b3ae803fcf12664ba0889a45a2d2795",
+                "reference": "84700bf73b3ae803fcf12664ba0889a45a2d2795",
                 "shasum": ""
             },
             "require": {
                 "laravel/framework": "*",
-                "php": "^7.2"
+                "php": "^7.3"
             },
             "require-dev": {
-                "codedungeon/phpunit-result-printer": "^0.26.2",
+                "codedungeon/phpunit-result-printer": "^0.27.0",
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.6.2",
                 "fzaninotto/faker": "^1.9",
-                "orchestra/testbench": "^4.6",
+                "orchestra/testbench": "^5.0",
                 "phpmd/phpmd": "^2.8",
-                "phpunit/phpunit": "^8.5",
+                "phpunit/phpunit": "^9.0",
                 "squizlabs/php_codesniffer": "^3.5"
             },
             "type": "library",
@@ -5430,7 +5430,7 @@
                 "laravel",
                 "search"
             ],
-            "time": "2020-02-02T09:16:57+00:00"
+            "time": "2020-03-08T11:24:35+00:00"
         },
         {
             "name": "theseer/tokenizer",
