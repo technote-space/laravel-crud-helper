@@ -45,7 +45,7 @@
         "phpunit/phpunit": "^9.1",
         "squizlabs/php_codesniffer": "^3.5",
         "orchestra/testbench": "^5.1",
-        "technote/laravel-search-helper": "^0.2.2"
+        "technote/laravel-search-helper": "^0.2.3"
     },
     "scripts": {
         "setup": [
