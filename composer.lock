@@ -6612,16 +6612,16 @@
         },
         {
             "name": "technote/laravel-search-helper",
-            "version": "v0.2.6",
+            "version": "v0.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/technote-space/laravel-search-helper.git",
-                "reference": "921adb5f8cd924d8b04ca1024a90ffc560a14c7d"
+                "reference": "5cc328d9de5f351a514152ab274a3f52b76ce206"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/technote-space/laravel-search-helper/zipball/921adb5f8cd924d8b04ca1024a90ffc560a14c7d",
-                "reference": "921adb5f8cd924d8b04ca1024a90ffc560a14c7d",
+                "url": "https://api.github.com/repos/technote-space/laravel-search-helper/zipball/5cc328d9de5f351a514152ab274a3f52b76ce206",
+                "reference": "5cc328d9de5f351a514152ab274a3f52b76ce206",
                 "shasum": ""
             },
             "require": {
@@ -6629,8 +6629,8 @@
                 "php": "^7.3"
             },
             "require-dev": {
-                "codedungeon/phpunit-result-printer": "^0.27.0",
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.6.2",
+                "codedungeon/phpunit-result-printer": "^0.28.0",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                 "fzaninotto/faker": "^1.9",
                 "orchestra/testbench": "^5.3",
                 "phpmd/phpmd": "^2.8",
@@ -6673,7 +6673,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2020-06-23T12:21:01+00:00"
+            "time": "2020-06-27T15:11:12+00:00"
         },
         {
             "name": "theseer/tokenizer",
