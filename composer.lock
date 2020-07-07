@@ -6623,16 +6623,16 @@
         },
         {
             "name": "technote/laravel-search-helper",
-            "version": "v0.2.7",
+            "version": "v0.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/technote-space/laravel-search-helper.git",
-                "reference": "5cc328d9de5f351a514152ab274a3f52b76ce206"
+                "reference": "de74f04f441500d10837c38e18b7bce0c6386c38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/technote-space/laravel-search-helper/zipball/5cc328d9de5f351a514152ab274a3f52b76ce206",
-                "reference": "5cc328d9de5f351a514152ab274a3f52b76ce206",
+                "url": "https://api.github.com/repos/technote-space/laravel-search-helper/zipball/de74f04f441500d10837c38e18b7bce0c6386c38",
+                "reference": "de74f04f441500d10837c38e18b7bce0c6386c38",
                 "shasum": ""
             },
             "require": {
@@ -6684,7 +6684,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2020-06-27T15:11:12+00:00"
+            "time": "2020-07-04T05:34:05+00:00"
         },
         {
             "name": "theseer/tokenizer",
