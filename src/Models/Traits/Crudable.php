@@ -25,14 +25,7 @@ trait Crudable
      * @return array
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public static function filterCrudRules(
-        /** @noinspection PhpUnusedParameterInspection */ array $rules,
-                                                          string $name,
-                                                          Column $column,
-                                                          bool $isUpdate,
-                                                          ?int $primaryId,
-                                                          FormRequest $request
-    ): array
+    public static function filterCrudRules(/** @noinspection PhpUnusedParameterInspection */ array $rules, string $name, Column $column, bool $isUpdate, ?int $primaryId, FormRequest $request): array
     {
         return $rules;
     }
@@ -48,14 +41,7 @@ trait Crudable
      * @return string
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public static function filterCrudAttribute(
-        /** @noinspection PhpUnusedParameterInspection */ string $attr,
-                                                          string $name,
-                                                          Column $column,
-                                                          bool $isUpdate,
-                                                          ?int $primaryId,
-                                                          FormRequest $request
-    ): string
+    public static function filterCrudAttribute(/** @noinspection PhpUnusedParameterInspection */ string $attr, string $name, Column $column, bool $isUpdate, ?int $primaryId, FormRequest $request): string
     {
         return $attr;
     }
