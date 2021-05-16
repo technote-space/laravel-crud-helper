@@ -19,7 +19,7 @@ class CustomValidator
      */
     public function validateKatakana(/** @noinspection PhpUnusedParameterInspection */ $attribute, $value, $parameters): bool
     {
-        return (bool) preg_match('/^[ァ-ヾ 　〜ー−]+$/u', $value);
+        return (bool)preg_match('/^[ァ-ヾ 　〜ー−]+$/u', $value);
     }
 
     /**
@@ -32,7 +32,7 @@ class CustomValidator
      */
     public function validateZipCode(/** @noinspection PhpUnusedParameterInspection */ $attribute, $value, $parameters): bool
     {
-        return (bool) preg_match('/^\d{3}-\d{4}$|^\d{3}-\d{2}$|^\d{3}$|^\d{5}$|^\d{7}$/u', $value);
+        return (bool)preg_match('/^\d{3}-\d{4}$|^\d{3}-\d{2}$|^\d{3}$|^\d{5}$|^\d{7}$/u', $value);
     }
 
     /**
@@ -45,7 +45,7 @@ class CustomValidator
      */
     public function validatePhone(/** @noinspection PhpUnusedParameterInspection */ $attribute, $value, $parameters): bool
     {
-        return (bool) preg_match('/^\d{2,4}-?\d{2,4}-?\d{3,4}$/u', $value);
+        return (bool)preg_match('/^\d{2,4}-?\d{2,4}-?\d{3,4}$/u', $value);
     }
 
     /**
@@ -59,7 +59,7 @@ class CustomValidator
     public function validateTime(/** @noinspection PhpUnusedParameterInspection */ $attribute, $value, $parameters): bool
     {
         $matches = null;
-        if (! preg_match('/^([0-2]?\d):([0-5]?\d)(:([0-5]?\d))?$/u', $value, $matches)) {
+        if (!preg_match('/^([0-2]?\d):([0-5]?\d)(:([0-5]?\d))?$/u', $value, $matches)) {
             return false;
         }
 

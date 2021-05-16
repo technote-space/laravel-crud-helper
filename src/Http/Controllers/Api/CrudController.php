@@ -15,8 +15,8 @@ use Technote\CrudHelper\Repositories\CrudRepository;
 class CrudController
 {
     /**
-     * @param  SearchRequest  $request
-     * @param  CrudRepository  $repository
+     * @param SearchRequest $request
+     * @param CrudRepository $repository
      *
      * @return LengthAwarePaginator|Builder[]|Collection|Model[]
      */
@@ -27,7 +27,7 @@ class CrudController
 
     /**
      * @param $primaryId
-     * @param  CrudRepository  $repository
+     * @param CrudRepository $repository
      *
      * @return Eloquent|Eloquent[]|Collection|Model
      */
@@ -37,8 +37,8 @@ class CrudController
     }
 
     /**
-     * @param  UpdateRequest  $request
-     * @param  CrudRepository  $repository
+     * @param UpdateRequest $request
+     * @param CrudRepository $repository
      *
      * @return Eloquent|Model
      */
@@ -48,9 +48,9 @@ class CrudController
     }
 
     /**
-     * @param  UpdateRequest  $request
-     * @param  int  $primaryId
-     * @param  CrudRepository  $repository
+     * @param UpdateRequest $request
+     * @param int $primaryId
+     * @param CrudRepository $repository
      *
      * @return Eloquent|Model
      */
@@ -60,8 +60,8 @@ class CrudController
     }
 
     /**
-     * @param  int  $primaryId
-     * @param  CrudRepository  $repository
+     * @param int $primaryId
+     * @param CrudRepository $repository
      *
      * @return array
      */

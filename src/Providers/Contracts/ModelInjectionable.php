@@ -10,7 +10,7 @@ namespace Technote\CrudHelper\Providers\Contracts;
 interface ModelInjectionable
 {
     /**
-     * @param  string  $target
+     * @param string $target
      *
      * @return void
      */

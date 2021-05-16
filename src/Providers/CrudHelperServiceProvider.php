@@ -34,22 +34,22 @@ class CrudHelperServiceProvider extends ServiceProvider
             $request->setTarget($this->app->make(RoutesHelper::class)->segmentToModel());
         });
 
-        $this->mergeConfigFrom(__DIR__.'/../../config/crud-helper.php', 'crud-helper');
-        $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'technote');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/crud-helper.php', 'crud-helper');
+        $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'technote');
     }
 
     /**
-     * @param  CrudHelperRouteRegistrar  $router
+     * @param CrudHelperRouteRegistrar $router
      */
     public function boot(CrudHelperRouteRegistrar $router): void
     {
-        if (! $this->app->routesAreCached()) {
+        if (!$this->app->routesAreCached()) {
             $router->register();
         }
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../../config/crud-helper.php' => $this->app->configPath('crud-helper.php'),
+                __DIR__ . '/../../config/crud-helper.php' => $this->app->configPath('crud-helper.php'),
             ], 'crud-helper');
         }
 

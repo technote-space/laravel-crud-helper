@@ -22,14 +22,14 @@ class CrudHelperRouteRegistrar
     /**
      * CrudHelperRouteRegistrar constructor.
      *
-     * @param  CrudOptions  $options
-     * @param  Registrar  $router
+     * @param CrudOptions $options
+     * @param Registrar $router
      */
     public function __construct(CrudOptions $options, RoutesHelper $helper, Registrar $router)
     {
         $this->options = $options;
-        $this->helper  = $helper;
-        $this->router  = $router;
+        $this->helper = $helper;
+        $this->router = $router;
     }
 
     /**
@@ -38,7 +38,7 @@ class CrudHelperRouteRegistrar
     public function register()
     {
         $this->router->group([
-            'prefix'     => $this->helper->getApiPrefix(),
+            'prefix' => $this->helper->getApiPrefix(),
             'middleware' => $this->helper->getApiMiddleware(),
         ], function (Router $router) {
             $classes = $this->helper->getCrudableClasses(spl_autoload_functions(), $this->helper->getApiNamespace());

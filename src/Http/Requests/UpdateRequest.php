@@ -37,7 +37,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $target
+     * @param string $target
      *
      * @return void
      */
@@ -67,7 +67,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      */
     protected function isUpdate(): bool
     {
-        return ! empty($this->route($this->getSingularName()));
+        return !empty($this->route($this->getSingularName()));
     }
 
     /**
@@ -87,13 +87,13 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $target
+     * @param string $target
      *
      * @return string
      */
     protected function getTable(string $target): string
     {
-        if (! isset($this->tables[$target])) {
+        if (!isset($this->tables[$target])) {
             $this->tables[$target] = $this->getInstance($target)->getTable();
         }
 
@@ -101,7 +101,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $target
+     * @param string $target
      *
      * @return Model|Crudable
      * @SuppressWarnings(PHPMD.MissingImport)
@@ -130,7 +130,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $target
+     * @param string $target
      *
      * @return array
      */
@@ -139,7 +139,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
         $foreignKey = $this->getForeignKey();
 
         return collect(DB::connection()->getDoctrineSchemaManager()->listTableColumns($this->getTable($target)))->filter(function (Column $column) use ($foreignKey) {
-            return ! in_array($column->getName(), [
+            return !in_array($column->getName(), [
                 'id',
                 'created_at',
                 'updated_at',
@@ -151,8 +151,8 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $target
-     * @param  Column  $column
+     * @param string $target
+     * @param Column $column
      *
      * @return array
      */
@@ -179,7 +179,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
             $rules['min'] = 'min:0';
         }
         if ($column->getLength()) {
-            $rules['max'] = 'max:'.$column->getLength();
+            $rules['max'] = 'max:' . $column->getLength();
         }
         // @codeCoverageIgnoreEnd
 
@@ -191,8 +191,8 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  array  $rules
-     * @param  string  $name
+     * @param array $rules
+     * @param string $name
      *
      * @return array
      */
@@ -209,7 +209,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
         }
         $matches = null;
         if (preg_match('#\A(\w+)_id\z#', $name, $matches)) {
-            $table           = Str::snake(Str::pluralStudly($matches[1]));
+            $table = Str::snake(Str::pluralStudly($matches[1]));
             $rules['exists'] = "exists:{$table},id";
         }
         if (stristr($name, 'kana') !== false) {
@@ -223,9 +223,9 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  array  $rules
-     * @param  string  $name
-     * @param  Column  $column
+     * @param array $rules
+     * @param string $name
+     * @param Column $column
      *
      * @return array
      */
@@ -235,8 +235,8 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  array  $rules
-     * @param  Type  $type
+     * @param array $rules
+     * @param Type $type
      *
      * @return array
      */
@@ -293,13 +293,13 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      * @noinspection PhpUnusedPrivateMethodInspection
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      *
-     * @param  array  $rules
+     * @param array $rules
      *
      * @return array
      */
     private function getBooleanTypeRules(array $rules): array
     {
-        $rules['boolean']  = 'boolean';
+        $rules['boolean'] = 'boolean';
         $rules['nullable'] = 'nullable';
         unset($rules['required']);
         unset($rules['filled']);
@@ -312,7 +312,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      * @noinspection PhpUnusedPrivateMethodInspection
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      *
-     * @param  array  $rules
+     * @param array $rules
      *
      * @return array
      */
@@ -327,7 +327,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      * @noinspection PhpUnusedPrivateMethodInspection
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      *
-     * @param  array  $rules
+     * @param array $rules
      *
      * @return array
      */
@@ -342,7 +342,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      * @noinspection PhpUnusedPrivateMethodInspection
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      *
-     * @param  array  $rules
+     * @param array $rules
      *
      * @return array
      */
@@ -357,7 +357,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      * @noinspection PhpUnusedPrivateMethodInspection
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      *
-     * @param  array  $rules
+     * @param array $rules
      *
      * @return array
      */
@@ -372,7 +372,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      * @noinspection PhpUnusedPrivateMethodInspection
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      *
-     * @param  array  $rules
+     * @param array $rules
      *
      * @return array
      */
@@ -394,14 +394,14 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $target
+     * @param string $target
      *
      * @return array
      */
     protected function getTableAttributes(string $target): array
     {
         return collect($this->getInstance($target)->getConnection()->getDoctrineSchemaManager()->listTableColumns($this->getTable($target)))->filter(function (Column $column) {
-            return ! in_array($column->getName(), [
+            return !in_array($column->getName(), [
                 'id',
                 'created_at',
                 'updated_at',
@@ -414,14 +414,14 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $name
-     * @param  Column  $column
+     * @param string $name
+     * @param Column $column
      *
      * @return string|null
      */
     protected function translateColumn(string $name, Column $column): ?string
     {
-        $key   = "database.{$name}";
+        $key = "database.{$name}";
         $value = __($key);
         if ($value === $key) {
             return $column->getComment() ?? $column->getName();
@@ -431,9 +431,9 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $attr
-     * @param  string  $name
-     * @param  Column  $column
+     * @param string $attr
+     * @param string $name
+     * @param Column $column
      *
      * @return string
      */
@@ -443,8 +443,8 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $target
-     * @param  array  $merge
+     * @param string $target
+     * @param array $merge
      *
      * @return array
      */
@@ -460,8 +460,8 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     {
         return collect([$this->getSaveData($this->target)])->concat(collect($this->getSubTargets())->map(function ($target, $relation) {
             return [
-                'target'     => $target,
-                'relation'   => $relation,
+                'target' => $target,
+                'relation' => $relation,
                 'attributes' => $this->getSaveData($target),
             ];
         }));

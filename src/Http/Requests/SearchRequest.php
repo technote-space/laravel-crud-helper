@@ -28,7 +28,7 @@ class SearchRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $target
+     * @param string $target
      *
      * @return void
      */
@@ -60,8 +60,8 @@ class SearchRequest extends FormRequest implements ModelInjectionable
     protected function getDefaultRules(): array
     {
         return array_merge([
-            's'      => 'nullable|string',
-            'count'  => 'nullable|integer|min:0',
+            's' => 'nullable|string',
+            'count' => 'nullable|integer|min:0',
             'offset' => 'nullable|integer|min:0',
         ], [
             $this->getPerPage() => 'nullable|integer|min:1',
@@ -74,8 +74,8 @@ class SearchRequest extends FormRequest implements ModelInjectionable
     protected function getDefaultAttributes(): array
     {
         return array_merge([
-            's'      => trans('technote::validation.attributes.s'),
-            'count'  => trans('technote::validation.attributes.count'),
+            's' => trans('technote::validation.attributes.s'),
+            'count' => trans('technote::validation.attributes.count'),
             'offset' => trans('technote::validation.attributes.offset'),
         ], [
             $this->getPerPage() => trans('technote::validation.attributes.per_page'),
@@ -83,7 +83,7 @@ class SearchRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $class
+     * @param string $class
      *
      * @return bool
      */
