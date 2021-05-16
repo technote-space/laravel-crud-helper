@@ -48,7 +48,7 @@ class RoutesHelper
 
             return $loader->getPrefixesPsr4();
         })->filter(function (/** @noinspection PhpUnusedParameterInspection */ $dirs, $namespace) use ($targetNamespace) {
-            $namespace = trim(preg_quote($namespace), '\\');
+            $namespace = trim(preg_quote($namespace, '#'), '\\');
 
             return preg_match("#\A{$namespace}#", $targetNamespace) > 0;
         })->flatMap(function ($dirs, $namespace) use ($targetNamespace) {

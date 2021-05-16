@@ -23,6 +23,7 @@ class CrudHelperRouteRegistrar
      * CrudHelperRouteRegistrar constructor.
      *
      * @param CrudOptions $options
+     * @param RoutesHelper $helper
      * @param Registrar $router
      */
     public function __construct(CrudOptions $options, RoutesHelper $helper, Registrar $router)
@@ -35,7 +36,7 @@ class CrudHelperRouteRegistrar
     /**
      * register
      */
-    public function register()
+    public function register(): void
     {
         $this->router->group([
             'prefix' => $this->helper->getApiPrefix(),

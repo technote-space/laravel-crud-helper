@@ -54,7 +54,7 @@ class CrudController
      *
      * @return Eloquent|Model
      */
-    public function update(UpdateRequest $request, $primaryId, CrudRepository $repository)
+    public function update(UpdateRequest $request, int $primaryId, CrudRepository $repository)
     {
         return $repository->update($primaryId, $request->getData());
     }
@@ -65,7 +65,7 @@ class CrudController
      *
      * @return array
      */
-    public function destroy($primaryId, CrudRepository $repository): array
+    public function destroy(int $primaryId, CrudRepository $repository): array
     {
         return $repository->delete($primaryId);
     }

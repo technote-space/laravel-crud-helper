@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Technote\CrudHelper\Http\Requests;
 
+use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Types\Types;
@@ -133,6 +134,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      * @param string $target
      *
      * @return array
+     * @throws Exception
      */
     protected function getTableRules(string $target): array
     {
@@ -198,13 +200,13 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      */
     private function getNameRules(array $rules, string $name): array
     {
-        if (stristr($name, 'email') !== false) {
+        if (stripos($name, 'email') !== false) {
             $rules['email'] = 'email';
         }
-        if (stristr($name, 'url') !== false) {
+        if (stripos($name, 'url') !== false) {
             $rules['url'] = 'url';
         }
-        if (stristr($name, 'phone') !== false) {
+        if (stripos($name, 'phone') !== false) {
             $rules['phone'] = 'phone';
         }
         $matches = null;
@@ -212,10 +214,10 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
             $table = Str::snake(Str::pluralStudly($matches[1]));
             $rules['exists'] = "exists:{$table},id";
         }
-        if (stristr($name, 'kana') !== false) {
+        if (stripos($name, 'kana') !== false) {
             $rules['katakana'] = 'katakana';
         }
-        if (stristr($name, 'zip_code') !== false || stristr($name, 'postal_code') !== false) {
+        if (stripos($name, 'zip_code') !== false || stripos($name, 'postal_code') !== false) {
             $rules['zip_code'] = 'zip_code';
         }
 
@@ -243,9 +245,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     protected function getTypeRules(array $rules, Type $type): array
     {
         $normalized = null;
-        if (in_array($type->getName(), [
-            Types::BOOLEAN,
-        ], true)) {
+        if ($type->getName() === Types::BOOLEAN) {
             $normalized = 'Boolean';
         } elseif (in_array($type->getName(), [
             Types::INTEGER,
@@ -253,9 +253,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
             Types::SMALLINT,
         ], true)) {
             $normalized = 'Int';
-        } elseif (in_array($type->getName(), [
-            Types::FLOAT,
-        ], true)) {
+        } elseif ($type->getName() === Types::FLOAT) {
             $normalized = 'Numeric';
         } elseif (in_array($type->getName(), [
             Types::DATETIME_MUTABLE,
@@ -301,9 +299,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     {
         $rules['boolean'] = 'boolean';
         $rules['nullable'] = 'nullable';
-        unset($rules['required']);
-        unset($rules['filled']);
-        unset($rules['max']);
+        unset($rules['required'], $rules['filled'], $rules['max']);
 
         return $rules;
     }
@@ -397,6 +393,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      * @param string $target
      *
      * @return array
+     * @throws Exception
      */
     protected function getTableAttributes(string $target): array
     {

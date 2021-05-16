@@ -41,7 +41,7 @@ class CrudRepository implements ModelInjectionable
      *
      * @return bool
      */
-    private function isSearchable($class): bool
+    private function isSearchable(string $class): bool
     {
         return interface_exists('\Technote\SearchHelper\Models\Contracts\Searchable') && is_subclass_of($class, '\Technote\SearchHelper\Models\Contracts\Searchable');
     }
