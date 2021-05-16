@@ -5,7 +5,7 @@ namespace Technote\CrudHelper\Providers;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use Technote\CrudHelper\Providers\Contracts\ModelInjectionable;
+use Technote\CrudHelper\Providers\Contracts\ModelInjectable;
 use Technote\CrudHelper\Services\CrudOptions;
 use Technote\CrudHelper\Services\RoutesHelper;
 use Validator;
@@ -30,7 +30,7 @@ class CrudHelperServiceProvider extends ServiceProvider
             return new RoutesHelper($app->make(CrudOptions::class));
         });
 
-        $this->app->afterResolving(ModelInjectionable::class, function (ModelInjectionable $request) {
+        $this->app->afterResolving(ModelInjectable::class, function (ModelInjectable $request) {
             $request->setTarget($this->app->make(RoutesHelper::class)->segmentToModel());
         });
 

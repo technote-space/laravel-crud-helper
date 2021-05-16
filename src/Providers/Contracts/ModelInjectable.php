@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace Technote\CrudHelper\Providers\Contracts;
 
 /**
- * Interface ModelInjectionable
+ * Interface ModelInjectable
  * @package Technote\CrudHelper\Providers\Contracts
  */
-interface ModelInjectionable
+interface ModelInjectable
 {
     /**
      * @param string $target

@@ -15,13 +15,13 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Technote\CrudHelper\Models\Contracts\Crudable;
-use Technote\CrudHelper\Providers\Contracts\ModelInjectionable;
+use Technote\CrudHelper\Providers\Contracts\ModelInjectable;
 
 /**
  * Class CrudRequest
  * @package Technote\CrudHelper\Requests
  */
-class UpdateRequest extends FormRequest implements ModelInjectionable
+class UpdateRequest extends FormRequest implements ModelInjectable
 {
     /** @var string|Eloquent|Crudable $target */
     private $target;

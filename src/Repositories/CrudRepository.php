@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Technote\CrudHelper\Repositories;
 
 use Technote\CrudHelper\Models\Contracts\Crudable;
-use Technote\CrudHelper\Providers\Contracts\ModelInjectionable;
+use Technote\CrudHelper\Providers\Contracts\ModelInjectable;
 use Eloquent;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,7 +16,7 @@ use Technote\SearchHelper\Models\Contracts\Searchable;
  * Class CrudRepository
  * @package Technote\CrudHelper\Repositories
  */
-class CrudRepository implements ModelInjectionable
+class CrudRepository implements ModelInjectable
 {
     /** @var string|Eloquent|Crudable $target */
     private $target;

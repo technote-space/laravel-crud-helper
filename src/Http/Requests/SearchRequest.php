@@ -7,14 +7,14 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Technote\CrudHelper\Models\Contracts\Crudable;
-use Technote\CrudHelper\Providers\Contracts\ModelInjectionable;
+use Technote\CrudHelper\Providers\Contracts\ModelInjectable;
 use Technote\SearchHelper\Models\Contracts\Searchable;
 
 /**
  * Class SearchRequest
  * @package Technote\CrudHelper\Http\Requests
  */
-class SearchRequest extends FormRequest implements ModelInjectionable
+class SearchRequest extends FormRequest implements ModelInjectable
 {
     /** @var string|Eloquent|Crudable $target */
     private $target;
