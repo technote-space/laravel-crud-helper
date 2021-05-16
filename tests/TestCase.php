@@ -20,7 +20,7 @@ class TestCase extends BaseTestCase
     /**
      * @param  Application  $app
      */
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app): void
     {
         $app['config']->set('database.default', 'test');
         $app['config']->set('database.connections.test', [
@@ -37,7 +37,7 @@ class TestCase extends BaseTestCase
      * @return array
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             CrudHelperServiceProvider::class,
@@ -88,12 +88,12 @@ class TestCase extends BaseTestCase
         });
     }
 
-    private function userFactory(string $name, string $address, Generator $faker)
+    private function userFactory(string $name, string $address, Generator $faker): void
     {
         $this->userDetailFactory(User::create(), $name, $address, $faker);
     }
 
-    private function userDetailFactory(User $user, string $name, string $address, Generator $faker)
+    private function userDetailFactory(User $user, string $name, string $address, Generator $faker): void
     {
         UserDetail::create([
             'user_id'   => $user->id,
@@ -107,7 +107,7 @@ class TestCase extends BaseTestCase
         ]);
     }
 
-    private function itemFactory(string $name)
+    private function itemFactory(string $name): void
     {
         Item::create(['name' => $name]);
     }
