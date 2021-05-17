@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Technote\CrudHelper\Http\Requests;
 
+use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Types\Types;
@@ -14,13 +15,13 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Technote\CrudHelper\Models\Contracts\Crudable;
-use Technote\CrudHelper\Providers\Contracts\ModelInjectionable;
+use Technote\CrudHelper\Providers\Contracts\ModelInjectable;
 
 /**
  * Class CrudRequest
  * @package Technote\CrudHelper\Requests
  */
-class UpdateRequest extends FormRequest implements ModelInjectionable
+class UpdateRequest extends FormRequest implements ModelInjectable
 {
     /** @var string|Eloquent|Crudable $target */
     private $target;
@@ -37,7 +38,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $target
+     * @param string $target
      *
      * @return void
      */
@@ -67,7 +68,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      */
     protected function isUpdate(): bool
     {
-        return ! empty($this->route($this->getSingularName()));
+        return !empty($this->route($this->getSingularName()));
     }
 
     /**
@@ -87,13 +88,13 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $target
+     * @param string $target
      *
      * @return string
      */
     protected function getTable(string $target): string
     {
-        if (! isset($this->tables[$target])) {
+        if (!isset($this->tables[$target])) {
             $this->tables[$target] = $this->getInstance($target)->getTable();
         }
 
@@ -101,7 +102,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $target
+     * @param string $target
      *
      * @return Model|Crudable
      * @SuppressWarnings(PHPMD.MissingImport)
@@ -130,16 +131,17 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $target
+     * @param string $target
      *
      * @return array
+     * @throws Exception
      */
     protected function getTableRules(string $target): array
     {
         $foreignKey = $this->getForeignKey();
 
         return collect(DB::connection()->getDoctrineSchemaManager()->listTableColumns($this->getTable($target)))->filter(function (Column $column) use ($foreignKey) {
-            return ! in_array($column->getName(), [
+            return !in_array($column->getName(), [
                 'id',
                 'created_at',
                 'updated_at',
@@ -151,8 +153,8 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $target
-     * @param  Column  $column
+     * @param string $target
+     * @param Column $column
      *
      * @return array
      */
@@ -179,7 +181,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
             $rules['min'] = 'min:0';
         }
         if ($column->getLength()) {
-            $rules['max'] = 'max:'.$column->getLength();
+            $rules['max'] = 'max:' . $column->getLength();
         }
         // @codeCoverageIgnoreEnd
 
@@ -191,31 +193,31 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  array  $rules
-     * @param  string  $name
+     * @param array $rules
+     * @param string $name
      *
      * @return array
      */
     private function getNameRules(array $rules, string $name): array
     {
-        if (stristr($name, 'email') !== false) {
+        if (stripos($name, 'email') !== false) {
             $rules['email'] = 'email';
         }
-        if (stristr($name, 'url') !== false) {
+        if (stripos($name, 'url') !== false) {
             $rules['url'] = 'url';
         }
-        if (stristr($name, 'phone') !== false) {
+        if (stripos($name, 'phone') !== false) {
             $rules['phone'] = 'phone';
         }
         $matches = null;
         if (preg_match('#\A(\w+)_id\z#', $name, $matches)) {
-            $table           = Str::snake(Str::pluralStudly($matches[1]));
+            $table = Str::snake(Str::pluralStudly($matches[1]));
             $rules['exists'] = "exists:{$table},id";
         }
-        if (stristr($name, 'kana') !== false) {
+        if (stripos($name, 'kana') !== false) {
             $rules['katakana'] = 'katakana';
         }
-        if (stristr($name, 'zip_code') !== false || stristr($name, 'postal_code') !== false) {
+        if (stripos($name, 'zip_code') !== false || stripos($name, 'postal_code') !== false) {
             $rules['zip_code'] = 'zip_code';
         }
 
@@ -223,9 +225,9 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  array  $rules
-     * @param  string  $name
-     * @param  Column  $column
+     * @param array $rules
+     * @param string $name
+     * @param Column $column
      *
      * @return array
      */
@@ -235,17 +237,15 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  array  $rules
-     * @param  Type  $type
+     * @param array $rules
+     * @param Type $type
      *
      * @return array
      */
     protected function getTypeRules(array $rules, Type $type): array
     {
         $normalized = null;
-        if (in_array($type->getName(), [
-            Types::BOOLEAN,
-        ], true)) {
+        if ($type->getName() === Types::BOOLEAN) {
             $normalized = 'Boolean';
         } elseif (in_array($type->getName(), [
             Types::INTEGER,
@@ -253,9 +253,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
             Types::SMALLINT,
         ], true)) {
             $normalized = 'Int';
-        } elseif (in_array($type->getName(), [
-            Types::FLOAT,
-        ], true)) {
+        } elseif ($type->getName() === Types::FLOAT) {
             $normalized = 'Numeric';
         } elseif (in_array($type->getName(), [
             Types::DATETIME_MUTABLE,
@@ -293,17 +291,15 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      * @noinspection PhpUnusedPrivateMethodInspection
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      *
-     * @param  array  $rules
+     * @param array $rules
      *
      * @return array
      */
     private function getBooleanTypeRules(array $rules): array
     {
-        $rules['boolean']  = 'boolean';
+        $rules['boolean'] = 'boolean';
         $rules['nullable'] = 'nullable';
-        unset($rules['required']);
-        unset($rules['filled']);
-        unset($rules['max']);
+        unset($rules['required'], $rules['filled'], $rules['max']);
 
         return $rules;
     }
@@ -312,7 +308,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      * @noinspection PhpUnusedPrivateMethodInspection
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      *
-     * @param  array  $rules
+     * @param array $rules
      *
      * @return array
      */
@@ -327,7 +323,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      * @noinspection PhpUnusedPrivateMethodInspection
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      *
-     * @param  array  $rules
+     * @param array $rules
      *
      * @return array
      */
@@ -342,7 +338,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      * @noinspection PhpUnusedPrivateMethodInspection
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      *
-     * @param  array  $rules
+     * @param array $rules
      *
      * @return array
      */
@@ -357,7 +353,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      * @noinspection PhpUnusedPrivateMethodInspection
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      *
-     * @param  array  $rules
+     * @param array $rules
      *
      * @return array
      */
@@ -372,7 +368,7 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
      * @noinspection PhpUnusedPrivateMethodInspection
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      *
-     * @param  array  $rules
+     * @param array $rules
      *
      * @return array
      */
@@ -394,14 +390,15 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $target
+     * @param string $target
      *
      * @return array
+     * @throws Exception
      */
     protected function getTableAttributes(string $target): array
     {
         return collect($this->getInstance($target)->getConnection()->getDoctrineSchemaManager()->listTableColumns($this->getTable($target)))->filter(function (Column $column) {
-            return ! in_array($column->getName(), [
+            return !in_array($column->getName(), [
                 'id',
                 'created_at',
                 'updated_at',
@@ -414,14 +411,14 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $name
-     * @param  Column  $column
+     * @param string $name
+     * @param Column $column
      *
      * @return string|null
      */
     protected function translateColumn(string $name, Column $column): ?string
     {
-        $key   = "database.{$name}";
+        $key = "database.{$name}";
         $value = __($key);
         if ($value === $key) {
             return $column->getComment() ?? $column->getName();
@@ -431,9 +428,9 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $attr
-     * @param  string  $name
-     * @param  Column  $column
+     * @param string $attr
+     * @param string $name
+     * @param Column $column
      *
      * @return string
      */
@@ -443,8 +440,8 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $target
-     * @param  array  $merge
+     * @param string $target
+     * @param array $merge
      *
      * @return array
      */
@@ -460,8 +457,8 @@ class UpdateRequest extends FormRequest implements ModelInjectionable
     {
         return collect([$this->getSaveData($this->target)])->concat(collect($this->getSubTargets())->map(function ($target, $relation) {
             return [
-                'target'     => $target,
-                'relation'   => $relation,
+                'target' => $target,
+                'relation' => $relation,
                 'attributes' => $this->getSaveData($target),
             ];
         }));

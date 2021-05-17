@@ -25,7 +25,7 @@ class RoutesHelper
     /**
      * RoutesHelper constructor.
      *
-     * @param  CrudOptions  $options
+     * @param CrudOptions $options
      */
     public function __construct(CrudOptions $options)
     {
@@ -33,8 +33,8 @@ class RoutesHelper
     }
 
     /**
-     * @param  array  $autoloadFunctions
-     * @param  string  $targetNamespace
+     * @param array $autoloadFunctions
+     * @param string $targetNamespace
      *
      * @return Collection
      */
@@ -48,28 +48,28 @@ class RoutesHelper
 
             return $loader->getPrefixesPsr4();
         })->filter(function (/** @noinspection PhpUnusedParameterInspection */ $dirs, $namespace) use ($targetNamespace) {
-            $namespace = trim(preg_quote($namespace), '\\');
+            $namespace = trim(preg_quote($namespace, '#'), '\\');
 
             return preg_match("#\A{$namespace}#", $targetNamespace) > 0;
         })->flatMap(function ($dirs, $namespace) use ($targetNamespace) {
             $namespace = trim($namespace, '\\');
-            $relative  = str_replace('\\', DIRECTORY_SEPARATOR, trim(Str::replaceFirst($namespace, '', $targetNamespace), '\\'));
+            $relative = str_replace('\\', DIRECTORY_SEPARATOR, trim(Str::replaceFirst($namespace, '', $targetNamespace), '\\'));
 
             return collect($dirs)->flatMap(function ($dir) use ($relative) {
-                if (! is_dir($dir.DIRECTORY_SEPARATOR.$relative)) {
+                if (!is_dir($dir . DIRECTORY_SEPARATOR . $relative)) {
                     return [];
                 }
 
-                return File::files($dir.DIRECTORY_SEPARATOR.$relative);
+                return File::files($dir . DIRECTORY_SEPARATOR . $relative);
             })->map(function (SplFileInfo $info) use ($targetNamespace) {
-                return $targetNamespace.str_replace([DIRECTORY_SEPARATOR, '/'], '\\', $info->getRelativePath()).'\\'.pathinfo($info->getFilename(), PATHINFO_FILENAME);
+                return $targetNamespace . str_replace([DIRECTORY_SEPARATOR, '/'], '\\', $info->getRelativePath()) . '\\' . pathinfo($info->getFilename(), PATHINFO_FILENAME);
             });
         });
     }
 
     /**
-     * @param  Collection  $classes
-     * @param  Router  $router
+     * @param Collection $classes
+     * @param Router $router
      *
      * @return void
      */
@@ -88,7 +88,7 @@ class RoutesHelper
      */
     public function segmentToModel()
     {
-        return $this->getApiNamespace().'\\'.\Illuminate\Support\Str::studly(Str::singular(request()->segment($this->getApiPrefixSegmentCount() + 1)));
+        return $this->getApiNamespace() . '\\' . \Illuminate\Support\Str::studly(Str::singular(request()->segment($this->getApiPrefixSegmentCount() + 1)));
     }
 
     /**

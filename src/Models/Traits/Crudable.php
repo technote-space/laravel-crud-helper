@@ -15,46 +15,34 @@ use Illuminate\Foundation\Http\FormRequest;
 trait Crudable
 {
     /**
-     * @param  array  $rules
-     * @param  string  $name
-     * @param  Column  $column
-     * @param  bool  $isUpdate
-     * @param  int|null  $primaryId
-     * @param  FormRequest  $request
+     * @param array $rules
+     * @param string $name
+     * @param Column $column
+     * @param bool $isUpdate
+     * @param int|null $primaryId
+     * @param FormRequest $request
      *
      * @return array
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public static function filterCrudRules(
-        /** @noinspection PhpUnusedParameterInspection */ array $rules,
-        string $name,
-        Column $column,
-        bool $isUpdate,
-        ?int $primaryId,
-        FormRequest $request
-    ): array {
+    public static function filterCrudRules(/** @noinspection PhpUnusedParameterInspection */ array $rules, string $name, Column $column, bool $isUpdate, ?int $primaryId, FormRequest $request): array
+    {
         return $rules;
     }
 
     /**
-     * @param  string  $attr
-     * @param  string  $name
-     * @param  Column  $column
-     * @param  bool  $isUpdate
-     * @param  int|null  $primaryId
-     * @param  FormRequest  $request
+     * @param string $attr
+     * @param string $name
+     * @param Column $column
+     * @param bool $isUpdate
+     * @param int|null $primaryId
+     * @param FormRequest $request
      *
      * @return string
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public static function filterCrudAttribute(
-        /** @noinspection PhpUnusedParameterInspection */ string $attr,
-        string $name,
-        Column $column,
-        bool $isUpdate,
-        ?int $primaryId,
-        FormRequest $request
-    ): string {
+    public static function filterCrudAttribute(/** @noinspection PhpUnusedParameterInspection */ string $attr, string $name, Column $column, bool $isUpdate, ?int $primaryId, FormRequest $request): string
+    {
         return $attr;
     }
 

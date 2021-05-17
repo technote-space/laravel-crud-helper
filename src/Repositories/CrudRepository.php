@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Technote\CrudHelper\Repositories;
 
 use Technote\CrudHelper\Models\Contracts\Crudable;
-use Technote\CrudHelper\Providers\Contracts\ModelInjectionable;
+use Technote\CrudHelper\Providers\Contracts\ModelInjectable;
 use Eloquent;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,7 +16,7 @@ use Technote\SearchHelper\Models\Contracts\Searchable;
  * Class CrudRepository
  * @package Technote\CrudHelper\Repositories
  */
-class CrudRepository implements ModelInjectionable
+class CrudRepository implements ModelInjectable
 {
     /** @var string|Eloquent|Crudable $target */
     private $target;
@@ -25,29 +25,29 @@ class CrudRepository implements ModelInjectionable
     private $instance;
 
     /**
-     * @param  string  $target
+     * @param string $target
      *
      * @return void
      * @SuppressWarnings(PHPMD.MissingImport)
      */
     public function setTarget(string $target): void
     {
-        $this->target   = $target;
+        $this->target = $target;
         $this->instance = new $this->target;
     }
 
     /**
-     * @param  string  $class
+     * @param string $class
      *
      * @return bool
      */
-    private function isSearchable($class): bool
+    private function isSearchable(string $class): bool
     {
         return interface_exists('\Technote\SearchHelper\Models\Contracts\Searchable') && is_subclass_of($class, '\Technote\SearchHelper\Models\Contracts\Searchable');
     }
 
     /**
-     * @param  array  $conditions
+     * @param array $conditions
      *
      * @return LengthAwarePaginator|Builder[]|Collection|Model[]
      */
@@ -55,7 +55,7 @@ class CrudRepository implements ModelInjectionable
     {
         if ($this->isSearchable($this->target)) {
             /** @var Searchable $class */
-            $class    = $this->target;
+            $class = $this->target;
             $instance = $class::search($conditions);
         } else {
             $instance = $this->instance;
@@ -69,17 +69,17 @@ class CrudRepository implements ModelInjectionable
     }
 
     /**
-     * @param  mixed  $primaryId
+     * @param mixed $primaryId
      *
      * @return Eloquent|Eloquent[]|Collection|Model
      */
     public function get($primaryId)
     {
-        return $this->instance->with($this->target::getCrudDetailRelations())->findOrFail((int) $primaryId)->append($this->target::getCrudAppends());
+        return $this->instance->with($this->target::getCrudDetailRelations())->findOrFail((int)$primaryId)->append($this->target::getCrudAppends());
     }
 
     /**
-     * @param  \Illuminate\Support\Collection  $data
+     * @param \Illuminate\Support\Collection $data
      *
      * @return Eloquent|Model
      */
@@ -96,7 +96,7 @@ class CrudRepository implements ModelInjectionable
 
     /**
      * @param $primaryId
-     * @param  \Illuminate\Support\Collection  $data
+     * @param \Illuminate\Support\Collection $data
      *
      * @return Eloquent|Model
      */
@@ -113,12 +113,12 @@ class CrudRepository implements ModelInjectionable
     }
 
     /**
-     * @param  mixed  $primaryId
+     * @param mixed $primaryId
      *
      * @return array
      */
     public function delete($primaryId): array
     {
-        return ['result' => $this->target::destroy((int) $primaryId)];
+        return ['result' => $this->target::destroy((int)$primaryId)];
     }
 }

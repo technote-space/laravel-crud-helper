@@ -12,7 +12,7 @@ use Faker\Factory;
  */
 class UserApiTest extends TestCase
 {
-    public function testIndex()
+    public function testIndex(): void
     {
         $response = $this->json('GET', route('users.index'));
         $response->assertStatus(200)
@@ -25,7 +25,7 @@ class UserApiTest extends TestCase
                  ->assertJsonCount(15, 'data');
     }
 
-    public function testIndexWithPerPage()
+    public function testIndexWithPerPage(): void
     {
         $response = $this->json('GET', route('users.index', [
             'per_page' => 5,
@@ -40,7 +40,7 @@ class UserApiTest extends TestCase
                  ->assertJsonCount(5, 'data');
     }
 
-    public function testIndexWithoutCountLimit()
+    public function testIndexWithoutCountLimit(): void
     {
         $response = $this->json('GET', route('users.index', [
             'count' => 0,
@@ -49,7 +49,7 @@ class UserApiTest extends TestCase
                  ->assertJsonCount(50);
     }
 
-    public function testIndexWithOffset()
+    public function testIndexWithOffset(): void
     {
         $response = $this->json('GET', route('users.index', [
             'count'  => 20,
@@ -59,7 +59,7 @@ class UserApiTest extends TestCase
                  ->assertJsonCount(5);
     }
 
-    public function testShow()
+    public function testShow(): void
     {
         $user     = User::first();
         $response = $this->json('GET', route('users.show', [
@@ -71,9 +71,9 @@ class UserApiTest extends TestCase
                  ]);
     }
 
-    public function testStore()
+    public function testStore(): void
     {
-        $this->assertFalse(UserDetail::where('name', 'abc')->exists());
+        self::assertFalse(UserDetail::where('name', 'abc')->exists());
 
         $faker    = Factory::create('ja_JP');
         $response = $this->json('POST', route('users.store', [
@@ -92,12 +92,12 @@ class UserApiTest extends TestCase
                      'id',
                      'created_at',
                  ]);
-        $this->assertTrue(UserDetail::where('name', 'abc')->exists());
+        self::assertTrue(UserDetail::where('name', 'abc')->exists());
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
-        $this->assertFalse(UserDetail::where('name', 'xyz')->exists());
+        self::assertFalse(UserDetail::where('name', 'xyz')->exists());
         $user = User::first();
 
         $response = $this->json('PATCH', route('users.update', [
@@ -112,10 +112,10 @@ class UserApiTest extends TestCase
                      'id',
                      'created_at',
                  ]);
-        $this->assertTrue(UserDetail::where('name', 'xyz')->exists());
+        self::assertTrue(UserDetail::where('name', 'xyz')->exists());
     }
 
-    public function testFailUpdate()
+    public function testFailUpdate(): void
     {
         $user = User::first();
 
@@ -173,7 +173,7 @@ class UserApiTest extends TestCase
                  ]);
     }
 
-    public function testDestroy()
+    public function testDestroy(): void
     {
         $user = User::first();
 
@@ -185,10 +185,10 @@ class UserApiTest extends TestCase
                      'result' => 1,
                  ]);
 
-        $this->assertFalse(User::where('id', $user->id)->exists());
+        self::assertFalse(User::where('id', $user->id)->exists());
     }
 
-    public function testSearch1()
+    public function testSearch1(): void
     {
         $response = $this->json(
             'GET',
@@ -200,7 +200,7 @@ class UserApiTest extends TestCase
                  ->assertJsonCount(15, 'data');
     }
 
-    public function testSearch2()
+    public function testSearch2(): void
     {
         $response = $this->json(
             'GET',
@@ -212,7 +212,7 @@ class UserApiTest extends TestCase
                  ->assertJsonCount(15, 'data');
     }
 
-    public function testSearch3()
+    public function testSearch3(): void
     {
         $response = $this->json(
             'GET',
@@ -224,7 +224,7 @@ class UserApiTest extends TestCase
                  ->assertJsonCount(1, 'data');
     }
 
-    public function testSearch4()
+    public function testSearch4(): void
     {
         $response = $this->json(
             'GET',
@@ -236,7 +236,7 @@ class UserApiTest extends TestCase
                  ->assertJsonCount(1, 'data');
     }
 
-    public function testSearch5()
+    public function testSearch5(): void
     {
         $response = $this->json(
             'GET',
@@ -248,7 +248,7 @@ class UserApiTest extends TestCase
                  ->assertJsonCount(0, 'data');
     }
 
-    public function testSearchValidation()
+    public function testSearchValidation(): void
     {
         $response = $this->json(
             'GET',
@@ -270,13 +270,13 @@ class UserApiTest extends TestCase
                  ]);
     }
 
-    public function testAppends()
+    public function testAppends(): void
     {
         $response = $this->json('GET', route('users.index'));
         $response->assertStatus(200);
         $json = json_decode($response->content(), true);
-        $this->assertArrayHasKey('test1', $json['data'][0]);
-        $this->assertArrayNotHasKey('test2', $json['data'][0]);
+        self::assertArrayHasKey('test1', $json['data'][0]);
+        self::assertArrayNotHasKey('test2', $json['data'][0]);
 
         $user     = User::first();
         $response = $this->json('GET', route('users.show', [

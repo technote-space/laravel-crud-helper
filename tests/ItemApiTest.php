@@ -11,7 +11,7 @@ use Faker\Factory;
  */
 class ItemApiTest extends TestCase
 {
-    public function testIndex()
+    public function testIndex(): void
     {
         $response = $this->json('GET', route('items.index'));
         $response->assertStatus(200)
@@ -24,7 +24,7 @@ class ItemApiTest extends TestCase
                  ->assertJsonCount(15, 'data');
     }
 
-    public function testIndexWithPerPage()
+    public function testIndexWithPerPage(): void
     {
         $response = $this->json('GET', route('items.index', [
             'per_page' => 5,
@@ -39,7 +39,7 @@ class ItemApiTest extends TestCase
                  ->assertJsonCount(5, 'data');
     }
 
-    public function testShow()
+    public function testShow(): void
     {
         $item     = Item::first();
         $response = $this->json('GET', route('items.show', [
@@ -51,9 +51,9 @@ class ItemApiTest extends TestCase
                  ]);
     }
 
-    public function testStore()
+    public function testStore(): void
     {
-        $this->assertFalse(Item::where('name', 'abc')->exists());
+        self::assertFalse(Item::where('name', 'abc')->exists());
 
         $faker    = Factory::create('ja_JP');
         $response = $this->json('POST', route('items.store', [
@@ -72,12 +72,12 @@ class ItemApiTest extends TestCase
                      'id',
                      'created_at',
                  ]);
-        $this->assertTrue(Item::where('name', 'abc')->exists());
+        self::assertTrue(Item::where('name', 'abc')->exists());
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
-        $this->assertFalse(Item::where('name', 'xyz')->exists());
+        self::assertFalse(Item::where('name', 'xyz')->exists());
         $item = Item::first();
 
         $response = $this->json('PATCH', route('items.update', [
@@ -92,10 +92,10 @@ class ItemApiTest extends TestCase
                      'id',
                      'created_at',
                  ]);
-        $this->assertTrue(Item::where('name', 'xyz')->exists());
+        self::assertTrue(Item::where('name', 'xyz')->exists());
     }
 
-    public function testDestroy()
+    public function testDestroy(): void
     {
         $item = Item::first();
 
@@ -107,10 +107,10 @@ class ItemApiTest extends TestCase
                      'result' => 1,
                  ]);
 
-        $this->assertFalse(Item::where('id', $item->id)->exists());
+        self::assertFalse(Item::where('id', $item->id)->exists());
     }
 
-    public function testSearchIsInvalid()
+    public function testSearchIsInvalid(): void
     {
         $response = $this->json(
             'GET',

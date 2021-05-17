@@ -7,14 +7,14 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Technote\CrudHelper\Models\Contracts\Crudable;
-use Technote\CrudHelper\Providers\Contracts\ModelInjectionable;
+use Technote\CrudHelper\Providers\Contracts\ModelInjectable;
 use Technote\SearchHelper\Models\Contracts\Searchable;
 
 /**
  * Class SearchRequest
  * @package Technote\CrudHelper\Http\Requests
  */
-class SearchRequest extends FormRequest implements ModelInjectionable
+class SearchRequest extends FormRequest implements ModelInjectable
 {
     /** @var string|Eloquent|Crudable $target */
     private $target;
@@ -28,7 +28,7 @@ class SearchRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $target
+     * @param string $target
      *
      * @return void
      */
@@ -60,8 +60,8 @@ class SearchRequest extends FormRequest implements ModelInjectionable
     protected function getDefaultRules(): array
     {
         return array_merge([
-            's'      => 'nullable|string',
-            'count'  => 'nullable|integer|min:0',
+            's' => 'nullable|string',
+            'count' => 'nullable|integer|min:0',
             'offset' => 'nullable|integer|min:0',
         ], [
             $this->getPerPage() => 'nullable|integer|min:1',
@@ -74,8 +74,8 @@ class SearchRequest extends FormRequest implements ModelInjectionable
     protected function getDefaultAttributes(): array
     {
         return array_merge([
-            's'      => trans('technote::validation.attributes.s'),
-            'count'  => trans('technote::validation.attributes.count'),
+            's' => trans('technote::validation.attributes.s'),
+            'count' => trans('technote::validation.attributes.count'),
             'offset' => trans('technote::validation.attributes.offset'),
         ], [
             $this->getPerPage() => trans('technote::validation.attributes.per_page'),
@@ -83,11 +83,11 @@ class SearchRequest extends FormRequest implements ModelInjectionable
     }
 
     /**
-     * @param  string  $class
+     * @param string $class
      *
      * @return bool
      */
-    private function isSearchable($class): bool
+    private function isSearchable(string $class): bool
     {
         return interface_exists('\Technote\SearchHelper\Models\Contracts\Searchable') && is_subclass_of($class, '\Technote\SearchHelper\Models\Contracts\Searchable');
     }
