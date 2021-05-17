@@ -14,59 +14,61 @@ use Technote\CrudHelper\Repositories\CrudRepository;
 
 class CrudController
 {
+    private $repository;
+
+    public function __construct(CrudRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * @param SearchRequest $request
-     * @param CrudRepository $repository
      *
      * @return LengthAwarePaginator|Builder[]|Collection|Model[]
      */
-    public function index(SearchRequest $request, CrudRepository $repository)
+    public function index(SearchRequest $request)
     {
-        return $repository->all($request->getConditions());
+        return $this->repository->all($request->getConditions());
     }
 
     /**
      * @param $primaryId
-     * @param CrudRepository $repository
      *
      * @return Eloquent|Eloquent[]|Collection|Model
      */
-    public function show($primaryId, CrudRepository $repository)
+    public function show($primaryId)
     {
-        return $repository->get($primaryId);
+        return $this->repository->get($primaryId);
     }
 
     /**
      * @param UpdateRequest $request
-     * @param CrudRepository $repository
      *
      * @return Eloquent|Model
      */
-    public function store(UpdateRequest $request, CrudRepository $repository)
+    public function store(UpdateRequest $request)
     {
-        return $repository->create($request->getData());
+        return $this->repository->create($request->getData());
     }
 
     /**
      * @param UpdateRequest $request
      * @param int $primaryId
-     * @param CrudRepository $repository
      *
      * @return Eloquent|Model
      */
-    public function update(UpdateRequest $request, int $primaryId, CrudRepository $repository)
+    public function update(UpdateRequest $request, int $primaryId)
     {
-        return $repository->update($primaryId, $request->getData());
+        return $this->repository->update($primaryId, $request->getData());
     }
 
     /**
      * @param int $primaryId
-     * @param CrudRepository $repository
      *
      * @return array
      */
-    public function destroy(int $primaryId, CrudRepository $repository): array
+    public function destroy(int $primaryId): array
     {
-        return $repository->delete($primaryId);
+        return $this->repository->delete($primaryId);
     }
 }
