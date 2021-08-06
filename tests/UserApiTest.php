@@ -151,7 +151,7 @@ class UserApiTest extends TestCase
                      'The phone must be a valid Phone number.',
                  ])
                  ->assertJsonFragment([
-                     'The home_url format is invalid.',
+                     'The home_url must be a valid URL.',
                  ])
                  ->assertJsonFragment([
                      'The email must be a valid email address.',
