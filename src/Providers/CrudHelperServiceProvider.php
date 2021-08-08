@@ -16,6 +16,8 @@ use Validator;
  */
 class CrudHelperServiceProvider extends ServiceProvider
 {
+    protected bool $defer = true;
+
     /**
      * Register services.
      *
@@ -36,6 +38,14 @@ class CrudHelperServiceProvider extends ServiceProvider
 
         $this->mergeConfigFrom(__DIR__ . '/../../config/crud-helper.php', 'crud-helper');
         $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'technote');
+    }
+
+    public function provides(): array
+    {
+        return [
+            CrudOptions::class,
+            RoutesHelper::class,
+        ];
     }
 
     /**
