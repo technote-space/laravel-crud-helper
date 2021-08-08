@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "176fc712e22339a278852e943e3922c5",
+    "content-hash": "8daedc5cbd3c97cacb0960530ba5940e",
     "packages": [
         {
             "name": "brick/math",
@@ -2187,16 +2187,16 @@
         },
         {
             "name": "ramsey/uuid",
-            "version": "4.1.1",
+            "version": "4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "cd4032040a750077205918c86049aa0f43d22947"
+                "reference": "7231612a5221f5524d3575bebdce20eeef8547a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/cd4032040a750077205918c86049aa0f43d22947",
-                "reference": "cd4032040a750077205918c86049aa0f43d22947",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/7231612a5221f5524d3575bebdce20eeef8547a1",
+                "reference": "7231612a5221f5524d3575bebdce20eeef8547a1",
                 "shasum": ""
             },
             "require": {
@@ -2210,26 +2210,26 @@
                 "rhumsaa/uuid": "self.version"
             },
             "require-dev": {
-                "codeception/aspect-mock": "^3",
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.6.2 || ^0.7.0",
+                "captainhook/captainhook": "^5.10",
+                "captainhook/plugin-composer": "^5.3",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                 "doctrine/annotations": "^1.8",
-                "goaop/framework": "^2",
+                "ergebnis/composer-normalize": "^2.15",
                 "mockery/mockery": "^1.3",
                 "moontoast/math": "^1.1",
                 "paragonie/random-lib": "^2",
+                "php-mock/php-mock": "^2.2",
                 "php-mock/php-mock-mockery": "^1.3",
-                "php-mock/php-mock-phpunit": "^2.5",
                 "php-parallel-lint/php-parallel-lint": "^1.1",
-                "phpbench/phpbench": "^0.17.1",
+                "phpbench/phpbench": "^1.0",
                 "phpstan/extension-installer": "^1.0",
                 "phpstan/phpstan": "^0.12",
                 "phpstan/phpstan-mockery": "^0.12",
                 "phpstan/phpstan-phpunit": "^0.12",
-                "phpunit/phpunit": "^8.5",
-                "psy/psysh": "^0.10.0",
-                "slevomat/coding-standard": "^6.0",
+                "phpunit/phpunit": "^8.5 || ^9",
+                "slevomat/coding-standard": "^7.0",
                 "squizlabs/php_codesniffer": "^3.5",
-                "vimeo/psalm": "3.9.4"
+                "vimeo/psalm": "^4.9"
             },
             "suggest": {
                 "ext-bcmath": "Enables faster math with arbitrary-precision integers using BCMath.",
@@ -2242,7 +2242,10 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.x-dev"
+                    "dev-main": "4.x-dev"
+                },
+                "captainhook": {
+                    "force-install": true
                 }
             },
             "autoload": {
@@ -2258,7 +2261,6 @@
                 "MIT"
             ],
             "description": "A PHP library for generating and working with universally unique identifiers (UUIDs).",
-            "homepage": "https://github.com/ramsey/uuid",
             "keywords": [
                 "guid",
                 "identifier",
@@ -2266,16 +2268,19 @@
             ],
             "support": {
                 "issues": "https://github.com/ramsey/uuid/issues",
-                "rss": "https://github.com/ramsey/uuid/releases.atom",
-                "source": "https://github.com/ramsey/uuid"
+                "source": "https://github.com/ramsey/uuid/tree/4.2.0"
             },
             "funding": [
                 {
                     "url": "https://github.com/ramsey",
                     "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/ramsey/uuid",
+                    "type": "tidelift"
                 }
             ],
-            "time": "2020-08-18T17:17:46+00:00"
+            "time": "2021-08-06T22:30:43+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -8532,16 +8537,16 @@
         },
         {
             "name": "technote/laravel-search-helper",
-            "version": "v0.2.16",
+            "version": "v0.2.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/technote-space/laravel-search-helper.git",
-                "reference": "36aa3b068a763497ae04c8185bfe6010236fb4d1"
+                "reference": "e830563d66e60915ca8dd3e34df512116b4fbae2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/technote-space/laravel-search-helper/zipball/36aa3b068a763497ae04c8185bfe6010236fb4d1",
-                "reference": "36aa3b068a763497ae04c8185bfe6010236fb4d1",
+                "url": "https://api.github.com/repos/technote-space/laravel-search-helper/zipball/e830563d66e60915ca8dd3e34df512116b4fbae2",
+                "reference": "e830563d66e60915ca8dd3e34df512116b4fbae2",
                 "shasum": ""
             },
             "require": {
@@ -8549,10 +8554,10 @@
                 "php": "^7.3|^8.0"
             },
             "require-dev": {
-                "codedungeon/phpunit-result-printer": "^0.30.1",
+                "codedungeon/phpunit-result-printer": "^0.31.0",
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
-                "fakerphp/faker": "^1.14",
-                "orchestra/testbench": "^6.18",
+                "fakerphp/faker": "^1.15",
+                "orchestra/testbench": "^6.19",
                 "phpmd/phpmd": "^2.10",
                 "phpunit/phpunit": "^9.5",
                 "squizlabs/php_codesniffer": "^3.6"
@@ -8589,7 +8594,7 @@
             ],
             "support": {
                 "issues": "https://github.com/technote-space/laravel-search-helper/issues",
-                "source": "https://github.com/technote-space/laravel-search-helper/tree/v0.2.16"
+                "source": "https://github.com/technote-space/laravel-search-helper/tree/v0.2.17"
             },
             "funding": [
                 {
@@ -8597,7 +8602,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-06-25T16:05:55+00:00"
+            "time": "2021-08-06T18:42:51+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -8856,7 +8861,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3|^8.0"
+        "php": "^7.4|^8.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.1.0"
